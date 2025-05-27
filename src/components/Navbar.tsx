@@ -130,47 +130,68 @@ export const Navbar: React.FC = () => {
       
       {/* Full-screen Mobile Navigation with animation */}
       <div 
-        className={`fixed inset-0 z-40 backdrop-blur-xl bg-white/90 transform transition-transform duration-500 ${
-          isOpen ? 'translate-y-0' : 'translate-y-full'
+        className={`fixed inset-0 z-40 transform transition-all duration-500 ${
+          isOpen ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-full'
         } md:hidden`}
+        style={{
+          background: 'rgba(255, 255, 255, 0.98)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          minHeight: '100vh',
+          height: '100%'
+        }}
       >
-        <div className="container h-full flex flex-col items-center justify-center px-4">
-          {/* Abstract decoration */}
-          <div className="absolute top-20 right-20 w-40 h-40 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-40 h-40 bg-blue-500/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '5s'}}></div>
+        <div className="container min-h-screen h-full flex flex-col items-center justify-center px-4">
+          {/* Abstract decorations */}
+          <div className="absolute top-10 right-10 w-60 h-60 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-60 h-60 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse" style={{animationDuration: '6s'}}></div>
+          <div className="absolute top-1/3 left-1/4 w-40 h-40 bg-gradient-to-br from-green-500/5 to-teal-500/5 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
           
           {/* Links with staggered animation */}
-          <div className="flex flex-col items-center space-y-6 relative z-10">
+          <div className="flex flex-col items-center space-y-8 relative z-10 bg-transparent py-8">
             {['Home', 'Services', 'Experience', 'Portfolio', 'Testimonials', 'Contact'].map((item, index) => {
               const isActive = activeSection === item.toLowerCase();
               return (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase()}`}
-                  className={`relative text-2xl font-bold transition-all duration-300 px-6 py-2 overflow-hidden group animate-fade-in-right`}
-                  style={{animationDelay: `${index * 0.1}s`}}
-                  onClick={() => setIsOpen(false)}
+                  className={`relative text-2xl font-bold transition-all duration-300 px-8 py-3 overflow-hidden group animate-fade-in-right backdrop-blur-none bg-transparent hover:scale-105`}
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    const element = document.getElementById(item.toLowerCase());
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <span className={`relative z-10 ${isActive ? 'bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent' : 'text-gray-800'}`}>
                     {item}
                   </span>
-                  {/* Animated underline */}
-                  <span className={`absolute bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500 group-hover:w-full ${isActive ? 'w-full' : ''}`}></span>
+                  {/* Animated underline with glow */}
+                  <span className={`absolute bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500 group-hover:w-full ${isActive ? 'w-full shadow-lg' : ''}`}></span>
                 </a>
               );
             })}
           </div>
           
           {/* Social icons */}
-          <div className="absolute bottom-10 flex space-x-4">
+          <div className="absolute bottom-10 flex space-x-6">
             {['twitter', 'instagram', 'github', 'linkedin'].map(platform => (
               <a 
                 key={platform} 
                 href="#" 
-                className="w-10 h-10 rounded-full backdrop-blur-md bg-white/30 border border-white/30 flex items-center justify-center text-gray-800 transition-all hover:bg-orange-500 hover:text-white hover:-translate-y-1"
+                className="w-12 h-12 rounded-xl backdrop-blur-xl bg-white/40 border border-white/40 flex items-center justify-center text-gray-800 transition-all duration-300
+                         hover:bg-gradient-to-br hover:from-orange-500 hover:to-red-500 hover:text-white hover:-translate-y-1 hover:shadow-lg
+                         hover:border-transparent group"
               >
                 <span className="sr-only">{platform}</span>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg 
+                  className="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" />
                 </svg>
               </a>

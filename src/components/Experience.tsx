@@ -12,33 +12,50 @@ export const Experience: React.FC = () => {
         setExperiences(data.experience || []);
         
         // Set a small timeout to ensure DOM elements are rendered before applying animation
-        setTimeout(() => {
+        // Wait for next frame to ensure DOM is ready
+        requestAnimationFrame(() => {
           // Add scroll animation observer for timeline items
           const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in-right');
+                // Set position and opacity before animating
+                (entry.target as HTMLElement).style.transform = 'translateX(0)';
                 (entry.target as HTMLElement).style.opacity = '1';
                 
-                // Find all content cards within this timeline item and make them visible
+                // Find all content cards and animate them with staggered delays
                 const cards = (entry.target as HTMLElement).querySelectorAll('.timeline-card');
                 cards.forEach((card, idx) => {
+                  // Pre-set transform for animation
+                  (card as HTMLElement).style.transform = 'translateY(20px)';
+                  (card as HTMLElement).style.opacity = '0';
+                  
+                  // Trigger animation after a delay
                   setTimeout(() => {
+                    (card as HTMLElement).style.transform = 'translateY(0)';
                     (card as HTMLElement).style.opacity = '1';
-                  }, 300 * (idx + 1));
+                  }, 100 * (idx + 1));
                 });
+                
+                // Remove the observer once the animation is done
+                observer.unobserve(entry.target);
               }
             });
-          }, { threshold: 0.1, rootMargin: "0px 0px -100px 0px" });
+          }, { 
+            threshold: 0.2, // Increased threshold for more reliable triggering
+            rootMargin: "0px 0px -50px 0px" // Adjusted margin for earlier trigger
+          });
           
           observerRef.current = observer;
-
+          
+          // Initialize timeline items with starting position and opacity
           const timelineItems = document.querySelectorAll('.timeline-item');
           timelineItems.forEach(el => {
+            (el as HTMLElement).style.transform = 'translateX(50px)';
             (el as HTMLElement).style.opacity = '0';
+            (el as HTMLElement).style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
             observer.observe(el);
           });
-        }, 100);
+        });
       });
       
     return () => {
