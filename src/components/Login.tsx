@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Lock } from 'lucide-react';
+// Import from local Icons instead of lucide-react to avoid ad blocker issues
+import { FingerprintIcon as Lock } from './Icons';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),

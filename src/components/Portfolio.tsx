@@ -175,7 +175,7 @@ export const Portfolio: React.FC = () => {
                 className={`px-6 py-2.5 rounded-full transition-all backdrop-blur-sm border relative overflow-hidden group ${
                   activeCategory === category
                     ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white border-orange-400/50 shadow-lg transform scale-105'
-                    : 'bg-white/50 text-gray-700 border-white/30 hover:bg-white/70 shadow-inner-neumorphic dark:bg-gray-800/40 dark:text-gray-200 dark:border-white/10'
+                    : 'bg-white/50 text-gray-700 border-white/30 hover:bg-white/70 shadow-inner-neumorphic'
                 }`}
               >
                 {/* Button background animation */}
@@ -245,10 +245,9 @@ export const Portfolio: React.FC = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 z-10">
                         <a
                           href={project.link}
-                          className="w-full backdrop-blur-md bg-white/70 border-0 text-gray-800 px-5 py-3 rounded-xl flex items-center justify-center gap-2
+                          className="w-full backdrop-blur-md bg-white/80 border-0 text-gray-800 px-5 py-3 rounded-xl flex items-center justify-center gap-2
                                     transform translate-y-4 group-hover:translate-y-0 transition-all duration-500
-                                    shadow-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white
-                                    dark:bg-gray-800/60 dark:text-white/90 dark:border dark:border-white/10"
+                                    shadow-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white"
                         >
                           <span>Explore Project</span>
                           <ExternalLinkIcon className="w-4 h-4 group-hover:ml-2 transition-all" />

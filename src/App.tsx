@@ -12,36 +12,8 @@ import { Login } from './components/Login';
 import AdminLayout from './admin/AdminLayout';
 import Dashboard from './admin/Dashboard';
 import ContentEditor from './admin/ContentEditor';
-import { useEffect } from 'react';
 
 function App() {
-  // Initialize dark mode based on saved preferences when the app loads
-  useEffect(() => {
-    try {
-      // Check for saved dark mode preference
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      
-      if (savedDarkMode) {
-        document.documentElement.classList.add('dark-mode');
-        document.documentElement.style.colorScheme = 'dark';
-      } else {
-        document.documentElement.classList.remove('dark-mode');
-        document.documentElement.style.colorScheme = 'light';
-      }
-    } catch (error) {
-      // If localStorage is not available, use system preference as fallback
-      console.warn('Could not access localStorage for dark mode preference:', error);
-      
-      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDarkScheme) {
-        document.documentElement.classList.add('dark-mode');
-        document.documentElement.style.colorScheme = 'dark';
-      } else {
-        document.documentElement.classList.remove('dark-mode'); 
-        document.documentElement.style.colorScheme = 'light';
-      }
-    }
-  }, []);
 
   return (
     <Router>

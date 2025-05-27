@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Clock, Users, BarChart, Edit } from 'lucide-react';
+import { ClockIcon as Clock, UsersIcon as Users, BarChartIcon as BarChart, EditIcon as Edit } from '../components/Icons';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({

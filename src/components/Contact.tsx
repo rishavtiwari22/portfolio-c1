@@ -31,7 +31,7 @@ export const Contact: React.FC = () => {
   if (!contact) return null;
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-orange-50/15 to-orange-100/20 dark:from-gray-900 dark:via-gray-800/70 dark:to-orange-900/10 relative overflow-hidden w-full max-w-full">
+    <section id="contact" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-orange-50/15 to-orange-100/20 relative overflow-hidden w-full max-w-full">
       {/* Enhanced background elements with dynamic animations */}
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-orange-300/30 rounded-full blur-3xl animate-blob" style={{animationDuration: '15s'}}></div>
       <div className="absolute -bottom-32 -left-32 w-[30rem] h-[30rem] bg-purple-300/20 rounded-full blur-3xl animate-blob" style={{animationDuration: '18s'}}></div>
@@ -47,12 +47,11 @@ export const Contact: React.FC = () => {
           <div className="mb-20 text-center">
             <div className="inline-block perspective-1000 group mb-6 relative">
               <div className="transform group-hover:rotate-y-15 transition-all duration-700">
-                <div className="inline-block backdrop-blur-md bg-white/40 dark:bg-gray-800/30 border border-white/50 dark:border-white/10 rounded-full px-6 py-2.5 shadow-lg overflow-hidden relative">
+                <div className="inline-block backdrop-blur-md bg-white/40 border border-white/50 rounded-full px-6 py-2.5 shadow-lg overflow-hidden relative">
                   {/* Background glow effects */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-red-400/10 to-purple-500/20 blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <span className="animate-gradient-text bg-size-200 bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 
-                                dark:from-orange-400 dark:via-red-400 dark:to-orange-500 
                                 text-transparent bg-clip-text font-semibold tracking-wider text-sm uppercase relative z-10">
                     Get In Touch
                   </span>
@@ -68,44 +67,42 @@ export const Contact: React.FC = () => {
             
             <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight relative">
               <span className="inline-block animate-gradient-text bg-size-200 bg-gradient-to-r 
-                            from-gray-800 via-gray-900 to-black dark:from-white dark:via-gray-200 dark:to-gray-300
+                            from-gray-800 via-gray-900 to-black
                             bg-clip-text text-transparent drop-shadow-sm perspective-1000 transform transition-all duration-500
                             hover:scale-[1.03]">
                 Have an Awesome Project Idea?<br/>Let's Discuss
               </span>
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-1.5 w-40 bg-gradient-to-r 
-                           from-orange-500 to-red-500 dark:from-orange-400 dark:to-red-400 
+                           from-orange-500 to-red-500
                            rounded-full shadow-lg"></div>
               
               {/* Extra glow effect */}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-2 w-48 bg-gradient-to-r 
-                           from-orange-400/40 to-red-400/40 dark:from-orange-300/30 dark:to-red-300/30
+                           from-orange-400/40 to-red-400/40
                            rounded-full blur-md"></div>
             </h2>
             
             <div className="relative group max-w-3xl mx-auto">
-              <p className="text-gray-700 dark:text-gray-200 text-lg backdrop-blur-md 
-                         bg-white/50 dark:bg-gray-800/30 p-7 rounded-2xl border border-white/30 dark:border-white/10
-                         shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.3)]
+              <p className="text-gray-700 text-lg backdrop-blur-md 
+                         bg-white/50 p-7 rounded-2xl border border-white/30
+                         shadow-[0_10px_30px_rgba(0,0,0,0.1)]
                          z-10 relative transition-all group-hover:shadow-xl leading-relaxed">
                 I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
               </p>
               
               {/* Enhanced background effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 via-purple-300/10 to-blue-300/20 
-                           dark:from-orange-500/10 dark:via-purple-500/5 dark:to-blue-500/10
                            rounded-2xl blur-md -z-10 transform group-hover:scale-105 transition-transform duration-500"></div>
               
               {/* Neumorphic shadow effects */}
               <div className="absolute inset-0 rounded-2xl shadow-[inset_2px_2px_5px_rgba(255,255,255,0.3),inset_-2px_-2px_5px_rgba(0,0,0,0.1)] 
-                           dark:shadow-[inset_2px_2px_5px_rgba(255,255,255,0.05),inset_-2px_-2px_5px_rgba(0,0,0,0.1)]
                            opacity-50 z-20 pointer-events-none"></div>
             </div>
           </div>
           
           <div className="max-w-6xl mx-auto">
-            <div className="backdrop-blur-xl glassmorphic bg-white/40 dark:bg-gray-800/30 border border-white/30 dark:border-white/10 
-                         rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.1)] dark:shadow-[0_15px_35px_rgba(0,0,0,0.3)] overflow-hidden"
+            <div className="backdrop-blur-xl glassmorphic bg-white/40 border border-white/30 
+                         rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.1)] overflow-hidden"
                  style={{ backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
               <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Contact Information */}
@@ -166,19 +163,19 @@ export const Contact: React.FC = () => {
                   </div>
                 </div>
                 {/* Contact Form */}
-                <div className="p-8 md:p-12 backdrop-blur-xl bg-white/70 dark:bg-gray-800/40 relative shadow-[inset_1px_1px_2px_rgba(255,255,255,0.3),inset_-1px_-1px_2px_rgba(0,0,0,0.05)]">
+                <div className="p-8 md:p-12 backdrop-blur-xl bg-white/70 relative shadow-[inset_1px_1px_2px_rgba(255,255,255,0.3),inset_-1px_-1px_2px_rgba(0,0,0,0.05)]">
                   {/* Enhanced decorative elements with animations */}
-                  <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-gradient-to-br from-orange-200/30 to-red-200/20 dark:from-orange-500/20 dark:to-red-500/10 rounded-full blur-2xl animate-pulse" style={{animationDuration: '8s'}}></div>
-                  <div className="absolute -top-5 -left-5 w-40 h-40 bg-gradient-to-tl from-blue-200/20 to-purple-200/10 dark:from-blue-500/15 dark:to-purple-500/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '12s'}}></div>
+                  <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-gradient-to-br from-orange-200/30 to-red-200/20 rounded-full blur-2xl animate-pulse" style={{animationDuration: '8s'}}></div>
+                  <div className="absolute -top-5 -left-5 w-40 h-40 bg-gradient-to-tl from-blue-200/20 to-purple-200/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '12s'}}></div>
                   
                   {/* Brutalist accent */}
-                  <div className="absolute bottom-8 right-8 w-12 h-3 bg-orange-400/20 dark:bg-orange-500/20 transform rotate-45"></div>
+                  <div className="absolute bottom-8 right-8 w-12 h-3 bg-orange-400/20 transform rotate-45"></div>
                   
                   <form onSubmit={handleSubmit} className="relative z-10">
                     <div className="mb-8">
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 
-                                                 bg-gradient-to-r from-white/50 to-white/30 dark:from-gray-700/50 dark:to-gray-800/30 
-                                                 px-4 py-2 rounded-lg border border-white/30 dark:border-white/10 
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 
+                                                 bg-gradient-to-r from-white/50 to-white/30 
+                                                 px-4 py-2 rounded-lg border border-white/30 
                                                  inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Your Name
                       </label>
@@ -188,20 +185,19 @@ export const Contact: React.FC = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 neumorphic-inset bg-white/60 dark:bg-gray-700/40 
-                                 border border-white/40 dark:border-white/5 rounded-xl 
+                        className="w-full px-5 py-4 neumorphic-inset bg-white/60 
+                                 border border-white/40 rounded-xl 
                                  focus:ring-2 focus:ring-orange-500/60 focus:border-orange-500/60 outline-none 
-                                 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500
-                                 text-gray-800 dark:text-gray-200 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]
-                                 dark:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.05)]"
+                                 transition-all duration-300 placeholder:text-gray-400 
+                                 text-gray-800 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]"
                         placeholder="John Doe"
                         required
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 
-                                                 bg-gradient-to-r from-white/50 to-white/30 dark:from-gray-700/50 dark:to-gray-800/30 
-                                                 px-4 py-2 rounded-lg border border-white/30 dark:border-white/10 
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 
+                                                 bg-gradient-to-r from-white/50 to-white/30
+                                                 px-4 py-2 rounded-lg border border-white/30
                                                  inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Your Email
                       </label>
@@ -211,20 +207,19 @@ export const Contact: React.FC = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 neumorphic-inset bg-white/60 dark:bg-gray-700/40 
-                                 border border-white/40 dark:border-white/5 rounded-xl 
+                        className="w-full px-5 py-4 neumorphic-inset bg-white/60
+                                 border border-white/40 rounded-xl 
                                  focus:ring-2 focus:ring-orange-500/60 focus:border-orange-500/60 outline-none 
-                                 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500
-                                 text-gray-800 dark:text-gray-200 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]
-                                 dark:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.05)]"
+                                 transition-all duration-300 placeholder:text-gray-400
+                                 text-gray-800 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]"
                         placeholder="john@example.com"
                         required
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 
-                                                 bg-gradient-to-r from-white/50 to-white/30 dark:from-gray-700/50 dark:to-gray-800/30 
-                                                 px-4 py-2 rounded-lg border border-white/30 dark:border-white/10 
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2 
+                                                 bg-gradient-to-r from-white/50 to-white/30
+                                                 px-4 py-2 rounded-lg border border-white/30
                                                  inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Subject
                       </label>
@@ -234,20 +229,19 @@ export const Contact: React.FC = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 neumorphic-inset bg-white/60 dark:bg-gray-700/40 
-                                 border border-white/40 dark:border-white/5 rounded-xl 
+                        className="w-full px-5 py-4 neumorphic-inset bg-white/60
+                                 border border-white/40 rounded-xl 
                                  focus:ring-2 focus:ring-orange-500/60 focus:border-orange-500/60 outline-none 
-                                 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500
-                                 text-gray-800 dark:text-gray-200 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]
-                                 dark:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.05)]"
+                                 transition-all duration-300 placeholder:text-gray-400
+                                 text-gray-800 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]"
                         placeholder="Project Inquiry"
                         required
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 
-                                                 bg-gradient-to-r from-white/50 to-white/30 dark:from-gray-700/50 dark:to-gray-800/30 
-                                                 px-4 py-2 rounded-lg border border-white/30 dark:border-white/10 
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2 
+                                                 bg-gradient-to-r from-white/50 to-white/30
+                                                 px-4 py-2 rounded-lg border border-white/30
                                                  inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Message
                       </label>
@@ -257,12 +251,11 @@ export const Contact: React.FC = () => {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-5 py-4 neumorphic-inset bg-white/60 dark:bg-gray-700/40 
-                                 border border-white/40 dark:border-white/5 rounded-xl 
+                        className="w-full px-5 py-4 neumorphic-inset bg-white/60
+                                 border border-white/40 rounded-xl 
                                  focus:ring-2 focus:ring-orange-500/60 focus:border-orange-500/60 outline-none 
-                                 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500
-                                 text-gray-800 dark:text-gray-200 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]
-                                 dark:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.2),inset_-2px_-2px_5px_rgba(255,255,255,0.05)]
+                                 transition-all duration-300 placeholder:text-gray-400
+                                 text-gray-800 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.3)]
                                  resize-none"
                         placeholder="Your message here..."
                         required
@@ -271,8 +264,8 @@ export const Contact: React.FC = () => {
                     <button
                       type="submit"
                       className="w-full backdrop-blur-lg bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold py-4 px-8 rounded-xl transition-all duration-500 border-2 border-orange-400
-                      shadow-[0_15px_25px_-10px_rgba(240,140,50,0.7)] dark:shadow-[0_15px_25px_-5px_rgba(255,140,50,0.8)]
-                      hover:shadow-[0_25px_35px_-15px_rgba(240,140,50,0.8)] dark:hover:shadow-[0_25px_35px_-10px_rgba(255,140,50,0.9)] hover:-translate-y-2 
+                      shadow-[0_15px_25px_-10px_rgba(240,140,50,0.7)]
+                      hover:shadow-[0_25px_35px_-15px_rgba(240,140,50,0.8)] hover:-translate-y-2 
                       flex items-center justify-center group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 bg-gradient-to-r from-orange-600/30 to-orange-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>

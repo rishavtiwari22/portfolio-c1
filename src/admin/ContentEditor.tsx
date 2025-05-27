@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Save, Loader } from 'lucide-react';
+import { SaveIcon as Save, LoaderIcon as Loader } from '../components/Icons';
 
 interface ContentSection {
   id: string;

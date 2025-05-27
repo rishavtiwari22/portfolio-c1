@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Home, FileText, LogOut } from 'lucide-react';
+// Import from our custom Icons file to avoid ad blocker issues
+import { MenuIcon as Menu, XIcon as X, HomeIcon as Home, FileTextIcon as FileText, LogOutIcon as LogOut } from '../components/Icons';
 
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -13,25 +14,25 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900 overflow-hidden">
+    <div className="flex h-screen bg-gray-100 overflow-hidden">
       {/* Sidebar for larger screens and overlay for mobile */}
       <div 
         className={`
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:inset-auto md:h-auto
+          fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:inset-auto md:h-auto
         `}
       >
         {/* Admin Logo */}
-        <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b">
           <div className="flex items-center space-x-2">
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-2">
               <span className="font-bold text-white">A</span>
             </div>
-            <span className="font-bold text-lg text-gray-800 dark:text-white">Admin Panel</span>
+            <span className="font-bold text-lg text-gray-800">Admin Panel</span>
           </div>
           <button 
             onClick={() => setSidebarOpen(false)}
-            className="md:hidden text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"
+            className="md:hidden text-gray-500 hover:text-gray-800"
           >
             <X size={20} />
           </button>
@@ -44,8 +45,8 @@ export default function AdminLayout() {
             className={`
               flex items-center space-x-3 p-3 rounded-lg transition-colors
               ${location.pathname === '/admin' ? 
-                'bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400' : 
-                'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                'bg-orange-50 text-orange-600' : 
+                'text-gray-700 hover:bg-gray-100'
               }
             `}
           >
@@ -58,8 +59,8 @@ export default function AdminLayout() {
             className={`
               flex items-center space-x-3 p-3 rounded-lg transition-colors
               ${location.pathname === '/admin/content' ? 
-                'bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400' : 
-                'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                'bg-orange-50 text-orange-600' : 
+                'text-gray-700 hover:bg-gray-100'
               }
             `}
           >
@@ -69,7 +70,7 @@ export default function AdminLayout() {
           
           <button
             onClick={handleLogout}
-            className="flex w-full items-center space-x-3 p-3 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            className="flex w-full items-center space-x-3 p-3 rounded-lg text-red-600 hover:bg-red-50 transition-colors"
           >
             <LogOut size={18} />
             <span>Logout</span>
@@ -80,11 +81,11 @@ export default function AdminLayout() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm z-10">
+        <header className="bg-white shadow-sm z-10">
           <div className="px-4 py-3 flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="md:hidden text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"
+              className="md:hidden text-gray-500 hover:text-gray-800"
             >
               <Menu size={24} />
             </button>
@@ -93,13 +94,13 @@ export default function AdminLayout() {
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-full h-8 w-8 flex items-center justify-center text-white font-medium">
                 A
               </div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Admin</span>
+              <span className="text-sm font-medium text-gray-700">Admin</span>
             </div>
           </div>
         </header>
         
         {/* Main content area */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50 dark:bg-gray-900">
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
           <Outlet />
         </main>
       </div>

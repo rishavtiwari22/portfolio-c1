@@ -49,7 +49,7 @@ export const Experience: React.FC = () => {
   }, []);
 
   return (
-    <section id="experience" ref={sectionRef} className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-gray-100/30 to-orange-50/20 dark:from-gray-900 dark:via-gray-800/50 dark:to-orange-900/10 relative overflow-hidden w-full max-w-full">
+    <section id="experience" ref={sectionRef} className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-gray-100/30 to-orange-50/20 relative overflow-hidden w-full max-w-full">
       {/* Enhanced background elements with dynamic animations */}
       <div className="absolute top-40 -right-20 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '0s'}}></div>
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '3s'}}></div>
@@ -65,19 +65,19 @@ export const Experience: React.FC = () => {
       <div className="container-fluid relative z-10">
         <div className="w-full px-4 md:px-8 xl:px-12">
           <div className="mb-20 text-center">
-            <div className="inline-block bg-orange-50 dark:bg-orange-900/30 border border-orange-100 dark:border-orange-700/50 rounded-lg px-5 py-2 mb-4 shadow-sm">
-              <span className="bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 text-transparent bg-clip-text font-medium animate-gradient-text bg-size-200 uppercase tracking-wider text-sm">Professional Journey</span>
+            <div className="inline-block bg-orange-50 border border-orange-100 rounded-lg px-5 py-2 mb-4 shadow-sm">
+              <span className="bg-gradient-to-r from-orange-600 to-red-600 text-transparent bg-clip-text font-medium animate-gradient-text bg-size-200 uppercase tracking-wider text-sm">Professional Journey</span>
             </div>
             
             {/* Professional modern heading */}
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
               <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300">My</span>{' '}
               <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.1s'}}>Work</span>{' '}
               <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.2s'}}>Experience</span>
             </h2>
             
             <div className="relative">
-              <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto bg-white/90 dark:bg-gray-800/80 p-6 rounded-xl border border-gray-100 dark:border-gray-700/40 shadow-[0_15px_35px_rgba(0,0,0,0.05)] dark:shadow-[0_15px_35px_rgba(0,0,0,0.2)] transform hover:shadow-xl hover:scale-[1.01] transition-all duration-500 leading-relaxed">
+              <p className="text-gray-700 max-w-2xl mx-auto bg-white/90 p-6 rounded-xl border border-gray-100 shadow-[0_15px_35px_rgba(0,0,0,0.05)] transform hover:shadow-xl hover:scale-[1.01] transition-all duration-500 leading-relaxed">
                 I have worked with various companies and clients, gaining valuable experience and skills along the way.
               </p>
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-70"></div>
@@ -88,8 +88,7 @@ export const Experience: React.FC = () => {
             {/* Timeline track - glassmorphic professional design - repositioned to be below the nodes */}
             <div className="absolute left-0 md:left-1/2 top-12 h-[calc(100%-12px)] w-1 md:w-[4px]
                            bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 
-                           dark:from-orange-400 dark:via-orange-500 dark:to-amber-600 
-                           shadow-[0_0_15px_rgba(249,115,22,0.4)] dark:shadow-[0_0_18px_rgba(249,115,22,0.35)] z-0
+                           shadow-[0_0_15px_rgba(249,115,22,0.4)] z-0
                            backdrop-blur-sm">
               {/* Animated light points along the timeline */}
               <div className="absolute inset-0 h-full">
@@ -151,10 +150,10 @@ export const Experience: React.FC = () => {
                 {/* Content card with enhanced professional design, wider width and more modern styling */}
                 <div 
                   className={`timeline-card md:w-[calc(48%-1rem)] ${index % 2 === 0 ? 'md:ml-auto md:mr-8' : 'md:ml-8 md:mr-auto'} 
-                          bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/80 dark:to-gray-800/60
-                          border border-white/60 dark:border-gray-700/60
-                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_15px_40px_rgba(0,0,0,0.25)] transition-all duration-500 
-                          group-hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] dark:group-hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.2)] transform 
+                          bg-gradient-to-br from-white/90 to-white/70
+                          border border-white/60
+                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 
+                          group-hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] transform 
                           group-hover:scale-[1.03] group-hover:translate-y-[-5px] relative overflow-hidden mt-6 md:mt-0`}
                   style={{ 
                     opacity: 0,
@@ -179,38 +178,35 @@ export const Experience: React.FC = () => {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5">
                       <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent 
                                     transition-all duration-300 group-hover:from-orange-700 group-hover:to-red-700
-                                    dark:from-orange-400 dark:to-red-400 dark:group-hover:from-orange-300 dark:group-hover:to-red-300
                                     drop-shadow-sm tracking-tight">
                         {exp.position}
                       </h3>
                       
                       {/* Professional period badge */}
                       <span className="text-sm font-semibold bg-orange-50 text-orange-700 px-4 py-1.5 
-                                     dark:bg-orange-600/40 dark:text-orange-50 dark:border-orange-500/40
                                      rounded-lg mt-2 sm:mt-0 border border-orange-200/50 shadow-sm transform 
-                                     group-hover:translate-y-[-2px] transition-transform duration-300
-                                     dark:shadow-[0_4px_12px_rgba(255,153,51,0.2)]">
+                                     group-hover:translate-y-[-2px] transition-transform duration-300">
                         {exp.period}
                       </span>
                     </div>
                     
                     {/* Modern professional company badge */}
                     <div className="flex items-center mb-5 px-0 py-0
-                                  inline-flex gap-1.5
+                                  gap-1.5
                                   transform group-hover:translate-x-1 transition-transform duration-300">
-                      <div className="font-medium text-gray-800 dark:text-gray-100 text-base relative flex items-center">
-                        <svg className="w-5 h-5 mr-1.5 text-orange-500 dark:text-orange-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <div className="font-medium text-gray-800 text-base relative flex items-center">
+                        <svg className="w-5 h-5 mr-1.5 text-orange-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V4zm3 1h6v4H7V5z" clipRule="evenodd" />
                         </svg>
                         <span className="relative">
                           {exp.company}
-                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 dark:bg-orange-400
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500
                                         group-hover:w-full transition-all duration-500"></span>
                         </span>
                       </div>
                       <span className="mx-2 text-gray-400">•</span>
-                      <span className="text-gray-600 dark:text-gray-300 flex items-center">
-                        <svg className="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <span className="text-gray-600 flex items-center">
+                        <svg className="w-4 h-4 mr-1 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
                         {exp.location}
@@ -219,7 +215,7 @@ export const Experience: React.FC = () => {
                     
                     {/* Description with professional typography and better readability */}
                     <div className="relative">
-                      <p className="text-gray-700 dark:text-gray-200 relative text-base leading-relaxed mb-1 pl-3 border-l-2 border-orange-300 dark:border-orange-500/30">
+                      <p className="text-gray-700 relative text-base leading-relaxed mb-1 pl-3 border-l-2 border-orange-300">
                         {exp.description}
                       </p>
                       
@@ -234,13 +230,11 @@ export const Experience: React.FC = () => {
                         {exp.skills.map((skill: string, i: number) => (
                           <span key={i} 
                                 className="text-xs font-medium bg-gradient-to-r from-orange-50 to-orange-50/80 
-                                         dark:from-gray-800 dark:to-gray-700 
-                                         text-orange-700 dark:text-orange-300
+                                         text-orange-700
                                          px-3 py-1.5 rounded-md shadow-sm
-                                         border border-orange-100 dark:border-orange-700/30 
+                                         border border-orange-100
                                          transform transition-all duration-300 
-                                         hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-md 
-                                         dark:hover:shadow-[0_4px_12px_rgba(255,153,51,0.15)]"
+                                         hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-md"
                                 style={{transitionDelay: `${i * 50}ms`}}>
                             {skill}
                           </span>
@@ -256,65 +250,62 @@ export const Experience: React.FC = () => {
           {/* Stats section with glassmorphism and neumorphism */}
           <div className="mt-24 text-center">
             <div className="inline-flex flex-wrap justify-center items-center gap-6 md:gap-10 perspective-1000">
-              <div className="bg-white/70 dark:bg-gray-800/60 text-gray-800 dark:text-white
+              <div className="bg-white/70 text-gray-800
                           px-12 py-6 rounded-2xl font-medium 
-                          border border-white/50 dark:border-gray-700/50
+                          border border-white/50
                           shadow-[0_10px_30px_rgba(0,0,0,0.08),inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)] 
-                          dark:shadow-[0_15px_35px_rgba(0,0,0,0.25),inset_2px_2px_5px_rgba(255,255,255,0.1),inset_-2px_-2px_5px_rgba(0,0,0,0.1)]
                           backdrop-blur-md
                           transform hover:-translate-y-2 hover:shadow-xl transition-all duration-500 group overflow-hidden">
                 {/* Background decoration */}
-                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 dark:bg-orange-500/20 rounded-full blur-xl"></div>
-                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 dark:bg-blue-500/20 rounded-full blur-xl"></div>
+                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent drop-shadow-sm">8+</span>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-orange-700 
-                              dark:group-hover:text-orange-300 transition-colors uppercase tracking-wider">Years Experience</span>
+                              bg-clip-text text-transparent drop-shadow-sm">8+</span>
+                <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
+                              transition-colors uppercase tracking-wider">Years Experience</span>
               </div>
               
               <div className="hidden md:flex items-center">
                 <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-400 to-red-400 shadow-lg"></div>
-                <div className="w-10 h-0.5 bg-gradient-to-r from-orange-400 to-transparent dark:from-orange-500 dark:to-transparent shadow-sm"></div>
+                <div className="w-10 h-0.5 bg-gradient-to-r from-orange-400 to-transparent shadow-sm"></div>
               </div>
               
-              <div className="bg-white/70 dark:bg-gray-800/60 text-gray-800 dark:text-white
+              <div className="bg-white/70 text-gray-800
                           px-12 py-6 rounded-2xl font-medium 
-                          border border-white/50 dark:border-gray-700/50
+                          border border-white/50
                           shadow-[0_10px_30px_rgba(0,0,0,0.08),inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)] 
-                          dark:shadow-[0_15px_35px_rgba(0,0,0,0.25),inset_2px_2px_5px_rgba(255,255,255,0.1),inset_-2px_-2px_5px_rgba(0,0,0,0.1)]
                           backdrop-blur-md
                           transform hover:-translate-y-2 hover:shadow-xl transition-all duration-500 group overflow-hidden">
                 {/* Background decoration */}
-                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 dark:bg-orange-500/20 rounded-full blur-xl"></div>
-                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 dark:bg-blue-500/20 rounded-full blur-xl"></div>
+                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent drop-shadow-sm">50+</span>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-orange-700 
-                              dark:group-hover:text-orange-300 transition-colors uppercase tracking-wider">Projects</span>
+                              bg-clip-text text-transparent drop-shadow-sm">50+</span>
+                <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
+                              transition-colors uppercase tracking-wider">Projects</span>
               </div>
               
               <div className="hidden md:flex items-center">
                 <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-400 to-red-400 shadow-lg"></div>
-                <div className="w-10 h-0.5 bg-gradient-to-r from-orange-400 to-transparent dark:from-orange-500 dark:to-transparent shadow-sm"></div>
+                <div className="w-10 h-0.5 bg-gradient-to-r from-orange-400 to-transparent shadow-sm"></div>
               </div>
               
-              <div className="bg-white/70 dark:bg-gray-800/60 text-gray-800 dark:text-white
+              <div className="bg-white/70 text-gray-800
                           px-12 py-6 rounded-2xl font-medium 
-                          border border-white/50 dark:border-gray-700/50
+                          border border-white/50
                           shadow-[0_10px_30px_rgba(0,0,0,0.08),inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)] 
-                          dark:shadow-[0_15px_35px_rgba(0,0,0,0.25),inset_2px_2px_5px_rgba(255,255,255,0.1),inset_-2px_-2px_5px_rgba(0,0,0,0.1)]
                           backdrop-blur-md
                           transform hover:-translate-y-2 hover:shadow-xl transition-all duration-500 group overflow-hidden">
                 {/* Background decoration */}
-                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 dark:bg-orange-500/20 rounded-full blur-xl"></div>
-                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 dark:bg-blue-500/20 rounded-full blur-xl"></div>
+                <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-300/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent drop-shadow-sm">30+</span>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-orange-700 
-                              dark:group-hover:text-orange-300 transition-colors uppercase tracking-wider">Clients</span>
+                              bg-clip-text text-transparent drop-shadow-sm">30+</span>
+                <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
+                              transition-colors uppercase tracking-wider">Clients</span>
               </div>
             </div>
           </div>
