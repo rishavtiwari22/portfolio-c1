@@ -77,37 +77,33 @@ export const BlogPosts: React.FC = () => {
       
       <div className="container-fluid relative z-10">
         <div className="w-full px-5 md:px-10 xl:px-16">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div>
-              <div className="inline-block backdrop-blur-sm bg-white/30 border border-white/50 rounded-full px-4 py-1 mb-4 animate-float dark:bg-gray-800/30 dark:border-white/10" style={{animationDelay: '0.3s'}}>
-                <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-transparent bg-clip-text font-medium animate-gradient-text bg-size-200">Insights & Stories</span>
-              </div>
-              
-              {/* Kinetic typography heading */}
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300">From</span>{' '}
-                <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.1s'}}>my</span>{' '}
-                <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.2s'}}>blog</span>{' '}
-                <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.3s'}}>posts</span>
-                {/* Removed blurry text shadow as requested */}
-              </h2>
-              
-              <p className="text-gray-600 max-w-2xl backdrop-blur-md bg-white/40 p-5 rounded-2xl border border-white/30 shadow-neumorphic-light transform hover:shadow-xl hover:scale-[1.02] transition-all duration-500">
-                I regularly write about design, development, and my experiences working on various projects.
-              </p>
+          <div className="flex flex-col items-center text-center mb-16 mx-auto max-w-4xl">
+            <div className="inline-block backdrop-blur-sm bg-white/30 border border-white/50 rounded-full px-4 py-1 mb-4 animate-float" style={{animationDelay: '0.3s'}}>
+              <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-transparent bg-clip-text font-medium animate-gradient-text bg-size-200">Insights & Stories</span>
             </div>
             
-            {/* Claymorphic button */}
+            {/* Kinetic typography heading - centered at top */}
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
+              <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300">From</span>{' '}
+              <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.1s'}}>my</span>{' '}
+              <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.2s'}}>blog</span>{' '}
+              <span className="inline-block hover:transform hover:translate-y-[-5px] transition-transform duration-300" style={{transitionDelay: '0.3s'}}>posts</span>
+            </h2>
+            
+            <p className="text-gray-600 mx-auto max-w-2xl backdrop-blur-md bg-white/40 p-5 rounded-2xl border border-white/30 shadow-neumorphic-light transform hover:shadow-xl hover:scale-[1.02] transition-all duration-500 mb-8">
+              I regularly write about design, development, and my experiences working on various projects.
+            </p>
+            
+            {/* Improved button with better hover effects */}
             <a 
               href="#" 
-              className="hidden md:flex items-center backdrop-blur-sm bg-white/40 text-orange-600 border border-white/30 
+              className="flex items-center backdrop-blur-sm bg-white/50 text-orange-600 border border-orange-300/30 
                        hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white 
-                       px-6 py-2.5 rounded-xl transition-all font-medium mt-6 md:mt-0 shadow-md 
-                       hover:shadow-orange-300/20 hover:shadow-lg group
-                       dark:bg-gray-800/30 dark:text-orange-400 dark:border-white/10"
+                       px-8 py-3 rounded-xl transition-all font-medium shadow-md 
+                       hover:shadow-orange-300/30 hover:shadow-lg group transform hover:-translate-y-1"
             >
-              <span className="mr-1">View All</span>
-              <ArrowRightIcon className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="mr-2">View All Posts</span>
+              <ArrowRightIcon className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" />
             </a>
           </div>
 
@@ -217,16 +213,17 @@ export const BlogPosts: React.FC = () => {
                       <span className="text-sm font-medium text-gray-700 group-hover/author:text-blue-600 transition-colors">{post.author}</span>
                     </div>
                     
-                    {/* Read more button with animated hover effect */}
+                    {/* Read more button with improved animated hover effect */}
                     <a 
                       href="#" 
-                      className="backdrop-blur-sm bg-white/50 border border-white/30 text-orange-600 px-4 py-2 
+                      className="backdrop-blur-sm bg-white/60 border border-orange-300/30 text-orange-600 px-5 py-2 
                               rounded-xl transition-all font-medium flex items-center relative overflow-hidden group/btn
-                              hover:bg-orange-500 hover:text-white shadow-md hover:shadow-orange-300/20 hover:shadow-lg
-                              dark:bg-gray-800/40 dark:border-white/10 dark:text-orange-400"
+                              hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white 
+                              shadow-md hover:shadow-orange-300/30 hover:shadow-lg hover:-translate-y-1
+                              transform duration-300"
                     >
-                      <span className="relative z-10">Read</span>
-                      <ArrowRightIcon className="w-4 h-4 ml-1 transition-all transform group-hover/btn:translate-x-1" />
+                      <span className="relative z-10">Read More</span>
+                      <ArrowRightIcon className="w-4 h-4 ml-1.5 transition-all transform group-hover/btn:translate-x-1.5" />
                       {/* Button hover animation */}
                       <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-0 
                                      group-hover/btn:opacity-100 -z-0 transition-opacity duration-300"></span>
@@ -238,18 +235,18 @@ export const BlogPosts: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center md:hidden">
-            {/* Mobile view button with animation */}
+            {/* Mobile view button with improved styling */}
             <a 
               href="#" 
-              className="inline-flex items-center px-6 py-3 rounded-xl relative overflow-hidden group"
+              className="inline-flex items-center px-8 py-3 rounded-xl relative overflow-hidden group"
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 
-                            opacity-70 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-purple-500 
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-orange-600 
+                            opacity-80 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-400 to-orange-500 
                             blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105"></span>
               <span className="relative z-10 text-white font-medium flex items-center">
                 <span className="mr-2">View All Posts</span>
-                <ArrowRightIcon className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                <ArrowRightIcon className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" />
               </span>
             </a>
           </div>

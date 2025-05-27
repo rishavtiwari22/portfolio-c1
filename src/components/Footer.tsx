@@ -2,11 +2,11 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 w-full relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white py-16 w-full relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500/0 via-orange-500 to-orange-500/0"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500/0 via-orange-500/80 to-orange-500/0"></div>
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-500/15 rounded-full blur-3xl animate-pulse" style={{animationDuration: '8s'}}></div>
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl animate-pulse" style={{animationDuration: '10s'}}></div>
       
       {/* Brutalist accents */}
       <div className="absolute top-20 left-20 w-16 h-16 border-2 border-orange-500/20 rotate-45"></div>
@@ -60,9 +60,9 @@ export const Footer: React.FC = () => {
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 
-                    className="text-gray-400 hover:text-orange-300 transition-all duration-300 flex items-center group"
+                    className="text-gray-300 hover:text-orange-400 transition-all duration-300 flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50 mr-2 transform scale-0 group-hover:scale-100 transition-all duration-300"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500/70 mr-2 transform scale-0 group-hover:scale-100 transition-all duration-300"></span>
                     {item}
                   </a>
                 </li>
@@ -70,8 +70,8 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
           
-          <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(255,140,0,0.07)] transition-all duration-500">
-            <h3 className="text-xl font-semibold mb-5 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent inline-block">Services</h3>
+          <div className="backdrop-blur-sm bg-white/10 border border-white/20 rounded-xl p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(255,140,0,0.1)] transition-all duration-500">
+            <h3 className="text-xl font-semibold mb-5 bg-gradient-to-r from-orange-400 to-orange-200 bg-clip-text text-transparent inline-block">Services</h3>
             <ul className="space-y-3">
               {['Web Development', 'UI/UX Design', 'Mobile Development', 'Branding', 'Consulting'].map((item) => (
                 <li key={item}>
@@ -95,8 +95,8 @@ export const Footer: React.FC = () => {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <span className="block text-gray-300 text-sm mb-1">Email:</span> 
-                  <a href="mailto:info@example.com" className="text-gray-400 hover:text-orange-300 transition-all duration-300">john.doe@example.com</a>
+                  <span className="block text-gray-200 text-sm mb-1 font-medium">Email:</span> 
+                  <a href="mailto:info@example.com" className="text-gray-300 hover:text-orange-400 transition-all duration-300">john.doe@example.com</a>
                 </div>
               </li>
               <li className="flex items-start space-x-3 group">
@@ -128,24 +128,24 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-16 pt-8 border-t border-gray-800/50 flex flex-col md:flex-row justify-between items-center">
-          <div className="glassmorphic-light bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-            <p className="text-gray-300 text-sm flex items-center">
-              <span className="bg-gradient-to-r from-orange-400 to-red-400 text-xs px-2 py-0.5 rounded-md mr-2 font-medium">2025</span>
-              <span className="opacity-80">© John Doe. All rights reserved.</span>
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+          <div className="glassmorphic-light bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 hover:bg-white/15 transition-all duration-300">
+            <p className="text-gray-200 text-sm flex items-center">
+              <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs px-2.5 py-1 rounded-md mr-2 font-medium shadow-sm">2025</span>
+              <span className="opacity-90">© John Doe. All rights reserved.</span>
             </p>
           </div>
           <div className="mt-6 md:mt-0">
             <ul className="flex space-x-4">
               <li>
-                <a href="#" className="text-gray-400 hover:text-orange-300 text-sm transition-all duration-300 px-3 py-1.5 
-                               rounded-full bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/5">
+                <a href="#" className="text-gray-300 hover:text-orange-400 text-sm transition-all duration-300 px-4 py-2 
+                               rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/15 border border-white/20 hover:border-orange-500/30">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-orange-300 text-sm transition-all duration-300 px-3 py-1.5 
-                               rounded-full bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/5">
+                <a href="#" className="text-gray-300 hover:text-orange-400 text-sm transition-all duration-300 px-4 py-2 
+                               rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/15 border border-white/20 hover:border-orange-500/30">
                   Terms & Conditions
                 </a>
               </li>
