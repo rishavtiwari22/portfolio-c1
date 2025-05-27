@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 export const Experience: React.FC = () => {
   const [experiences, setExperiences] = useState<any[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     fetch('/src/data/content.json')
@@ -30,6 +31,8 @@ export const Experience: React.FC = () => {
             });
           }, { threshold: 0.1, rootMargin: "0px 0px -100px 0px" });
           
+          observerRef.current = observer;
+
           const timelineItems = document.querySelectorAll('.timeline-item');
           timelineItems.forEach(el => {
             (el as HTMLElement).style.opacity = '0';
@@ -39,8 +42,9 @@ export const Experience: React.FC = () => {
       });
       
     return () => {
-      const observer = document.querySelector('.timeline-item')?.__intersectionObserver__;
-      if (observer) observer.disconnect();
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
     };
   }, []);
 

@@ -11,9 +11,10 @@ export const Contact: React.FC = () => {
   const [contact, setContact] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/src/data/content.json')
+    fetch('/data/content.json')
       .then(res => res.json())
-      .then(data => setContact(data.contact));
+      .then(data => setContact(data.contact))
+      .catch(error => console.error('Error fetching contact data:', error));
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

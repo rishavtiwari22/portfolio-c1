@@ -39,31 +39,56 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Initialize dark mode on component mount
+  // Initialize dark mode on component mount with safe localStorage access
   useEffect(() => {
-    // Check if user previously set dark mode preference
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    setIsDarkMode(isDark);
-    
-    if (isDark) {
-      document.documentElement.classList.add('dark-mode');
-      document.documentElement.style.colorScheme = 'dark';
+    try {
+      // Check if user previously set dark mode preference
+      const isDark = localStorage.getItem('darkMode') === 'true';
+      setIsDarkMode(isDark);
+      
+      if (isDark) {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.style.colorScheme = 'light';
+      }
+    } catch (error) {
+      // If localStorage is not available (e.g., Safari private mode)
+      console.warn('Could not access localStorage for dark mode preference:', error);
     }
   }, []);
 
   const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    
-    // Save preference to localStorage
-    localStorage.setItem('darkMode', String(newDarkMode));
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark-mode');
-      document.documentElement.style.colorScheme = 'dark';
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-      document.documentElement.style.colorScheme = 'light';
+    try {
+      const newDarkMode = !isDarkMode;
+      setIsDarkMode(newDarkMode);
+      
+      // Save preference to localStorage
+      localStorage.setItem('darkMode', String(newDarkMode));
+      
+      if (newDarkMode) {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.style.colorScheme = 'light';
+      }
+    } catch (error) {
+      // Handle localStorage error
+      console.warn('Could not save dark mode preference:', error);
+      
+      // Still toggle the UI even if storage fails
+      const newDarkMode = !isDarkMode;
+      setIsDarkMode(newDarkMode);
+      
+      if (newDarkMode) {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.style.colorScheme = 'light';
+      }
     }
   };
 

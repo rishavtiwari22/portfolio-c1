@@ -1,0 +1,142 @@
+{
+  "hero": {
+    "name": "John Doe",
+    "title": "Full-Stack Developer",
+    "description": "A passionate developer with 8+ years of experience creating beautiful, functional, and user-centered digital experiences.",
+    "image": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "availability": "Available for work"
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "code",
+      "title": "Web Development",
+      "description": "Creating responsive and performant web applications using modern technologies and best practices.",
+      "image": "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": 2,
+      "icon": "paintbrush",
+      "title": "UI/UX Design",
+      "description": "Designing intuitive and beautiful user interfaces that provide excellent user experiences.",
+      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": 3,
+      "icon": "layout",
+      "title": "Mobile Development",
+      "description": "Building cross-platform mobile applications that work seamlessly on iOS and Android.",
+      "image": "https://images.pexels.com/photos/193004/pexels-photo-193004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "position": "Senior Frontend Developer",
+      "company": "Cognizant",
+      "location": "Mumbai",
+      "period": "Jan 2021 - Present",
+      "description": "Leading the frontend development team in building responsive and accessible web applications using React, TypeScript, and Tailwind CSS."
+    },
+    {
+      "id": 2,
+      "position": "UI/UX Designer",
+      "company": "Supee Pvt Limited",
+      "location": "Mumbai",
+      "period": "Mar 2018 - Dec 2020",
+      "description": "Designed user interfaces for mobile and web applications, conducted user research, and created wireframes and prototypes."
+    },
+    {
+      "id": 3,
+      "position": "Lead UX Designer",
+      "company": "Cinetoss",
+      "location": "Mumbai",
+      "period": "Jun 2015 - Feb 2018",
+      "description": "Managed a team of designers, established design systems, and ensured consistent user experiences across all products."
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "position": "Marketing Director, TechCorp",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "text": "Working with John was an absolute pleasure. He understood our vision from the start and delivered a website that exceeded our expectations. His attention to detail and problem-solving skills are impressive."
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "position": "CEO, Innovate Labs",
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "text": "John's technical expertise and creative approach transformed our outdated platform into a modern, user-friendly system. He communicated clearly throughout the process and delivered on time and within budget."
+    },
+    {
+      "id": 3,
+      "name": "Emily Rodriguez",
+      "position": "Product Manager, DesignHub",
+      "image": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "text": "I've worked with many developers, but John stands out for his combination of technical skill and design sensibility. He doesn't just code solutions; he thinks through the entire user experience."
+    }
+  ],
+  "contact": {
+    "email": "john.doe@example.com",
+    "phone": "+91 123 456 7890",
+    "location": "Mumbai, India",
+    "social": {
+      "twitter": "#",
+      "linkedin": "#",
+      "github": "#",
+      "dribbble": "#"
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Sugee - Loan Management Dashboard",
+      "description": "A comprehensive loan management dashboard for a financial technology company.",
+      "image": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["UI/UX", "Web Design"],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "Zest - Food Delivery App",
+      "description": "A mobile application for ordering food from local restaurants.",
+      "image": "https://images.pexels.com/photos/4144179/pexels-photo-4144179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["Mobile App", "UI/UX"],
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "Pinnacle - Real Estate Platform",
+      "description": "A web platform for buying, selling, and renting properties.",
+      "image": "https://images.pexels.com/photos/87223/pexels-photo-87223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["Web Design", "Branding"],
+      "link": "#"
+    },
+    {
+      "id": 4,
+      "title": "Pulse - Health Monitoring App",
+      "description": "A mobile application for tracking health metrics and fitness goals.",
+      "image": "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["Mobile App", "UI/UX"],
+      "link": "#"
+    },
+    {
+      "id": 5,
+      "title": "Mosaic - Social Media Dashboard",
+      "description": "A dashboard for managing and analyzing social media accounts.",
+      "image": "https://images.pexels.com/photos/34153/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["UI/UX", "Web Design"],
+      "link": "#"
+    },
+    {
+      "id": 6,
+      "title": "Orbit - Space Exploration Website",
+      "description": "A website for a space exploration company showcasing their missions and technology.",
+      "image": "https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["Web Design", "Branding"],
+      "link": "#"
+    }
+  ]
+}

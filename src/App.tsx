@@ -9,20 +9,37 @@ import { Contact } from './components/Contact';
 import { BlogPosts } from './components/BlogPosts';
 import { Footer } from './components/Footer';
 import { Login } from './components/Login';
+import AdminLayout from './admin/AdminLayout';
+import Dashboard from './admin/Dashboard';
+import ContentEditor from './admin/ContentEditor';
 import { useEffect } from 'react';
 
 function App() {
   // Initialize dark mode based on saved preferences when the app loads
   useEffect(() => {
-    // Check for saved dark mode preference
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    
-    if (savedDarkMode) {
-      document.documentElement.classList.add('dark-mode');
-      document.documentElement.style.colorScheme = 'dark';
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-      document.documentElement.style.colorScheme = 'light';
+    try {
+      // Check for saved dark mode preference
+      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+      
+      if (savedDarkMode) {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.style.colorScheme = 'light';
+      }
+    } catch (error) {
+      // If localStorage is not available, use system preference as fallback
+      console.warn('Could not access localStorage for dark mode preference:', error);
+      
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDarkScheme) {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark-mode'); 
+        document.documentElement.style.colorScheme = 'light';
+      }
     }
   }, []);
 
@@ -30,6 +47,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        
+        {/* Admin routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="content" element={<ContentEditor />} />
+        </Route>
+        
         <Route path="/" element={
           <div className="min-h-screen w-full overflow-x-hidden max-w-[100vw]">
             <Navbar />

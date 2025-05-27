@@ -11,9 +11,10 @@ export const Services: React.FC = () => {
   const [services, setServices] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/src/data/content.json')
+    fetch('/data/content.json')
       .then(res => res.json())
-      .then(data => setServices(data.services || []));
+      .then(data => setServices(data.services || []))
+      .catch(error => console.error('Error fetching services data:', error));
   }, []);
 
   return (
