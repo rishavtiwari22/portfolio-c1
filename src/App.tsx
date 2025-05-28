@@ -8,24 +8,12 @@ import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { BlogPosts } from './components/BlogPosts';
 import { Footer } from './components/Footer';
-import { Login } from './components/Login';
-import AdminLayout from './admin/AdminLayout';
-import Dashboard from './admin/Dashboard';
-import ContentEditor from './admin/ContentEditor';
 
 function App() {
 
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        
-        {/* Admin routes */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="content" element={<ContentEditor />} />
-        </Route>
-        
         <Route path="/" element={
           <div className="min-h-screen w-full overflow-x-hidden max-w-[100vw]">
             <Navbar />

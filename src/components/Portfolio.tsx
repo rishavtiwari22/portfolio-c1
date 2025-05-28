@@ -7,6 +7,7 @@ export const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastScrollPosition, setLastScrollPosition] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,6 +84,32 @@ export const Portfolio: React.FC = () => {
       }
     };
   }, []);
+
+  // Debounced scroll handler
+  useEffect(() => {
+    let timeoutId: number;
+    const debounce = (func: Function, delay: number) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(), delay) as unknown as number;
+    };
+
+    // Add optimized scroll handling
+    const handleScroll = () => {
+      debounce(() => {
+        const scrollPosition = window.scrollY;
+        // Only update state if we've scrolled significantly
+        if (Math.abs(scrollPosition - lastScrollPosition) > 50) {
+          setLastScrollPosition(scrollPosition);
+        }
+      }, 20);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [lastScrollPosition]);
 
   // Apply staggered animations when category changes
   useEffect(() => {

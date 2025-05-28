@@ -6,58 +6,72 @@ export const Experience: React.FC = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    fetch('/src/data/content.json')
-      .then(res => res.json())
-      .then(data => {
+    // Use async function for better error handling and performance
+    const fetchExperiences = async () => {
+      try {
+        const res = await fetch('/data/content.json');
+        if (!res.ok) throw new Error('Failed to fetch experiences');
+        const data = await res.json();
         setExperiences(data.experience || []);
         
-        // Set a small timeout to ensure DOM elements are rendered before applying animation
-        // Wait for next frame to ensure DOM is ready
+        // Wait for the next frame to ensure state is updated
         requestAnimationFrame(() => {
           // Add scroll animation observer for timeline items
           const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                // Set position and opacity before animating
-                (entry.target as HTMLElement).style.transform = 'translateX(0)';
-                (entry.target as HTMLElement).style.opacity = '1';
+                const element = entry.target as HTMLElement;
+                const isLeft = element.dataset.position === 'left';
                 
-                // Find all content cards and animate them with staggered delays
-                const cards = (entry.target as HTMLElement).querySelectorAll('.timeline-card');
-                cards.forEach((card, idx) => {
-                  // Pre-set transform for animation
-                  (card as HTMLElement).style.transform = 'translateY(20px)';
-                  (card as HTMLElement).style.opacity = '0';
-                  
-                  // Trigger animation after a delay
+                // Trigger the animation
+                element.style.opacity = '1';
+                element.style.transform = 'translateX(0)';
+                
+                // Animate the nested timeline card with a slight delay
+                const card = element.querySelector('.timeline-card') as HTMLElement;
+                if (card) {
                   setTimeout(() => {
-                    (card as HTMLElement).style.transform = 'translateY(0)';
-                    (card as HTMLElement).style.opacity = '1';
-                  }, 100 * (idx + 1));
-                });
-                
-                // Remove the observer once the animation is done
-                observer.unobserve(entry.target);
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) rotateY(0)';
+                  }, 200);
+                }
               }
             });
           }, { 
-            threshold: 0.2, // Increased threshold for more reliable triggering
-            rootMargin: "0px 0px -50px 0px" // Adjusted margin for earlier trigger
+            threshold: 0.2,
+            rootMargin: "0px 0px -10% 0px"
           });
           
           observerRef.current = observer;
           
-          // Initialize timeline items with starting position and opacity
+          // Initialize timeline items with correct starting positions
           const timelineItems = document.querySelectorAll('.timeline-item');
-          timelineItems.forEach(el => {
-            (el as HTMLElement).style.transform = 'translateX(50px)';
-            (el as HTMLElement).style.opacity = '0';
-            (el as HTMLElement).style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
-            observer.observe(el);
+          timelineItems.forEach((el, index) => {
+            const isLeft = index % 2 === 0;
+            const element = el as HTMLElement;
+            element.dataset.position = isLeft ? 'left' : 'right';
+            element.style.transform = `translateX(${isLeft ? '-50px' : '50px'})`;
+            element.style.opacity = '0';
+            element.style.transition = 'transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1)';
+            
+            // Initialize the timeline card
+            const card = element.querySelector('.timeline-card') as HTMLElement;
+            if (card) {
+              card.style.transform = 'translateY(20px) rotateY(3deg)';
+              card.style.opacity = '0';
+              card.style.transition = 'transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1)';
+            }
+            
+            observer.observe(element);
           });
         });
-      });
-      
+      } catch (error) {
+        console.error('Error loading experiences:', error);
+      }
+    };
+
+    fetchExperiences();
+    
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
