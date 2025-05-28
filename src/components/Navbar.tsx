@@ -87,31 +87,7 @@ export const Navbar: React.FC = () => {
               </div>
             </nav>
             
-            {/* Login button with advanced glassmorphism and neumorphism */}
-            <Link 
-              to="/login"
-              className="relative overflow-hidden group backdrop-blur-xl px-5 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-xl hover:-translate-y-1
-                        bg-gradient-to-r from-orange-500/90 via-orange-600/90 to-red-500/90 text-white
-                        shadow-[0_8px_20px_rgba(0,0,0,0.1),inset_1px_1px_1px_rgba(255,255,255,0.4),inset_-1px_-1px_1px_rgba(0,0,0,0.1)]
-                        border border-white/20"
-            >
-              {/* Inner highlight effect */}
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-full"></span>
-              
-              {/* Animated glow on hover */}
-              <span className="absolute inset-0 w-0 h-full bg-gradient-to-r from-white/0 via-white/30 to-white/0
-                            transform -skew-x-12 group-hover:w-full transition-all duration-700
-                            blur-md"></span>
-                            
-              {/* Text with shadow */}
-              <span className="relative z-10 drop-shadow-sm flex items-center">
-                <span>Admin</span>
-                <svg className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </span>
-            </Link>
-            
+         
             {/* Mobile Menu Button with animation */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
