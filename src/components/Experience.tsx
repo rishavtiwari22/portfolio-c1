@@ -6,67 +6,94 @@ export const Experience: React.FC = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    // Use async function for better error handling and performance
+    let isLoading = false;
+    
+    const initializeTimelineItems = (elements: NodeListOf<Element>) => {
+      elements.forEach((el, idx) => {
+        const element = el as HTMLElement;
+        const side = idx % 2 === 0 ? 'left' : 'right';
+        element.dataset.position = side;
+        
+        // Set initial state with hardware-accelerated transforms
+        element.style.transform = `translate3d(${side === 'left' ? '-30px' : '30px'}, 0, 0)`;
+        element.style.opacity = '0';
+        element.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+        element.style.willChange = 'transform, opacity';
+        
+        // Initialize the timeline card with smoother animation
+        const card = element.querySelector('.timeline-card') as HTMLElement;
+        if (card) {
+          card.style.transform = 'translate3d(0, 15px, 0)';
+          card.style.opacity = '0';
+          card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+          card.style.willChange = 'transform, opacity';
+        }
+      });
+    };
+    
+    const setupObserver = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target as HTMLElement;
+              
+              // Reset transform to improve performance
+              element.style.transform = 'translate3d(0, 0, 0)';
+              element.style.opacity = '1';
+              
+              // Animate card with slight delay
+              const card = element.querySelector('.timeline-card') as HTMLElement;
+              if (card) {
+                setTimeout(() => {
+                  card.style.transform = 'translate3d(0, 0, 0)';
+                  card.style.opacity = '1';
+                }, 200);
+              }
+              
+              // Clean up will-change after animation
+              setTimeout(() => {
+                element.style.willChange = 'auto';
+                if (card) card.style.willChange = 'auto';
+              }, 1000);
+              
+              // Unobserve after animation
+              observer.unobserve(element);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "0px 0px -10% 0px"
+        }
+      );
+      return observer;
+    };
+
     const fetchExperiences = async () => {
+      if (isLoading) return;
+      isLoading = true;
+      
       try {
         const res = await fetch('/data/content.json');
         if (!res.ok) throw new Error('Failed to fetch experiences');
         const data = await res.json();
         setExperiences(data.experience || []);
         
-        // Wait for the next frame to ensure state is updated
+        // Wait for DOM update
         requestAnimationFrame(() => {
-          // Add scroll animation observer for timeline items
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const element = entry.target as HTMLElement;
-                const isLeft = element.dataset.position === 'left';
-                
-                // Trigger the animation
-                element.style.opacity = '1';
-                element.style.transform = 'translateX(0)';
-                
-                // Animate the nested timeline card with a slight delay
-                const card = element.querySelector('.timeline-card') as HTMLElement;
-                if (card) {
-                  setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0) rotateY(0)';
-                  }, 200);
-                }
-              }
-            });
-          }, { 
-            threshold: 0.2,
-            rootMargin: "0px 0px -10% 0px"
-          });
+          const timelineItems = document.querySelectorAll('.timeline-item');
+          initializeTimelineItems(timelineItems);
           
+          const observer = setupObserver();
           observerRef.current = observer;
           
-          // Initialize timeline items with correct starting positions
-          const timelineItems = document.querySelectorAll('.timeline-item');
-          timelineItems.forEach((el, index) => {
-            const isLeft = index % 2 === 0;
-            const element = el as HTMLElement;
-            element.dataset.position = isLeft ? 'left' : 'right';
-            element.style.transform = `translateX(${isLeft ? '-50px' : '50px'})`;
-            element.style.opacity = '0';
-            element.style.transition = 'transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1)';
-            
-            // Initialize the timeline card
-            const card = element.querySelector('.timeline-card') as HTMLElement;
-            if (card) {
-              card.style.transform = 'translateY(20px) rotateY(3deg)';
-              card.style.opacity = '0';
-              card.style.transition = 'transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1)';
-            }
-            
-            observer.observe(element);
-          });
+          timelineItems.forEach(item => observer.observe(item));
         });
       } catch (error) {
         console.error('Error loading experiences:', error);
+      } finally {
+        isLoading = false;
       }
     };
 
@@ -116,25 +143,25 @@ export const Experience: React.FC = () => {
           </div>
 
           <div className="max-w-6xl mx-auto relative">
-            {/* Timeline track - glassmorphic professional design - repositioned to be below the nodes */}
+            {/* Timeline track with improved performance */}
             <div className="absolute left-0 md:left-1/2 top-12 h-[calc(100%-12px)] w-1 md:w-[4px]
                            bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 
                            shadow-[0_0_15px_rgba(249,115,22,0.4)] z-0
-                           backdrop-blur-sm">
-              {/* Animated light points along the timeline */}
-              <div className="absolute inset-0 h-full">
-                <div className="absolute top-0 left-0 right-0 h-20 w-full 
-                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full" 
-                    style={{animationDuration: '4s'}}></div>
-                <div className="absolute top-1/4 -translate-y-1/2 left-0 right-0 h-20 w-full 
-                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full"
-                    style={{animationDuration: '4s', animationDelay: '1s'}}></div>
-                <div className="absolute top-2/4 -translate-y-1/2 left-0 right-0 h-20 w-full 
-                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full"
-                    style={{animationDuration: '4s', animationDelay: '2s'}}></div>
-                <div className="absolute top-3/4 -translate-y-1/2 left-0 right-0 h-20 w-full 
-                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full"
-                    style={{animationDuration: '4s', animationDelay: '3s'}}></div>
+                           backdrop-blur-sm will-change-transform">
+              {/* Optimized animated light points */}
+              <div className="absolute inset-0 h-full overflow-hidden">
+                {[0, 1, 2, 3].map((i) => (
+                  <div key={i}
+                       className="absolute left-0 right-0 h-24 w-full transform -translate-y-1/2
+                                bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full" 
+                       style={{
+                         top: `${25 * i}%`,
+                         animationDuration: '4s',
+                         animationDelay: `${i}s`,
+                         willChange: 'opacity, transform'
+                       }}>
+                  </div>
+                ))}
               </div>
               
               {/* Enhanced glow effect for better visibility */}
@@ -181,11 +208,14 @@ export const Experience: React.FC = () => {
                 {/* Content card with enhanced professional design, wider width and more modern styling */}
                 <div 
                   className={`timeline-card md:w-[calc(48%-1rem)] ${index % 2 === 0 ? 'md:ml-auto md:mr-8' : 'md:ml-8 md:mr-auto'} 
-                          bg-gradient-to-br from-white/90 to-white/70
+                          bg-gradient-to-br from-white/95 to-white/85
                           border border-white/60
-                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 
-                          group-hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] transform 
-                          group-hover:scale-[1.03] group-hover:translate-y-[-5px] relative overflow-hidden mt-6 md:mt-0`}
+                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] 
+                          transition-all duration-500 ease-out
+                          hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] transform 
+                          hover:scale-[1.02] hover:translate-y-[-5px] 
+                          relative overflow-hidden mt-6 md:mt-0
+                          backdrop-blur-md`}
                   style={{ 
                     opacity: 0,
                     backdropFilter: 'blur(16px)', 

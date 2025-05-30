@@ -1,55 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { MenuIcon as Menu, XIcon as X } from './Icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // Enhanced fixed style for the navbar with improved performance
+  const navbarStyle = {
+    position: 'fixed' as 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+    zIndex: 9999,
+    height: '70px',
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)', // For Safari support
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    boxShadow: '0 2px 15px rgba(0, 0, 0, 0.08)',
+    transition: 'all 0.3s ease-in-out',
+    transform: 'translateZ(0)', // Hardware acceleration
+    willChange: 'transform', // Performance optimization
+  };
 
   useEffect(() => {
+    // Only activate section detection on homepage
+    if (!isHomePage) return;
+    
+    // Optimized scroll handler with debounce for better performance
+    let scrollTimer: ReturnType<typeof setTimeout>;
     const handleScroll = () => {
-      // Handle scroll for navbar background
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-      
-      // Handle active section detection (scroll spy)
-      const sections = ['home', 'services', 'experience', 'portfolio', 'testimonials', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const height = element.offsetHeight;
+      // Use requestAnimationFrame for smoother performance
+      cancelAnimationFrame(window.requestAnimationFrame(() => {
+        clearTimeout(scrollTimer);
+        
+        scrollTimer = setTimeout(() => {
+          // Handle active section detection with improved scroll spy
+          const sections = ['home', 'services', 'experience', 'portfolio', 'testimonials', 'contact'];
+          const scrollPosition = window.scrollY + 100;
           
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-            setActiveSection(section);
-            break;
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              const offsetTop = window.scrollY + rect.top;
+              const height = rect.height;
+              
+              if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+                if (activeSection !== section) {
+                  setActiveSection(section);
+                }
+                break;
+              }
+            }
           }
-        }
-      }
+        }, 100); // Small debounce for better performance
+      }));
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true }); // Passive event for better performance
+    
+    // Initial call to set active section on load
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimer);
+    };
+  }, [isHomePage, activeSection]);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
-        isScrolled 
-          ? 'py-2 backdrop-blur-xl glassmorphic bg-white/60 shadow-lg' 
-          : 'py-6 bg-transparent'
-      }`}
-    >
-      <div className="container-fluid">
-        <div className="flex items-center justify-between px-4 md:px-8 xl:px-12">
+    <header style={navbarStyle} className="fixed-navbar">
+      <div className="container-fluid w-full">
+        <div className="flex items-center justify-between px-4 md:px-8 xl:px-12 h-[70px]">
           {/* Logo with 3D effect */}
-          <div className="flex items-center group">
+          <Link to="/" className="flex items-center group">
             <div className="relative">
               <span className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 rounded-full blur-sm transform group-hover:scale-110 transition-transform duration-300"></span>
               <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300">JD</span>
@@ -58,7 +85,7 @@ export const Navbar: React.FC = () => {
               <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Portfolio</span>
               <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"></div>
             </div>
-          </div>
+          </Link>
           
           <div className="flex items-center space-x-5">
             {/* Desktop Navigation with glassmorphic active indicators */}
@@ -70,6 +97,16 @@ export const Navbar: React.FC = () => {
                     <a 
                       key={item} 
                       href={`#${item.toLowerCase()}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(item.toLowerCase());
+                        if (element) {
+                          window.scrollTo({
+                            top: element.offsetTop - 70, // Account for navbar height
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
                       className={`relative px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
                         isActive 
                           ? 'text-white' 
@@ -84,6 +121,12 @@ export const Navbar: React.FC = () => {
                     </a>
                   );
                 })}
+                <Link 
+                  to="/blog"
+                  className="relative px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium text-gray-700 hover:text-gray-900"
+                >
+                  <span className="relative z-10">Blog</span>
+                </Link>
               </div>
             </nav>
             
@@ -150,6 +193,18 @@ export const Navbar: React.FC = () => {
                 </a>
               );
             })}
+            <Link 
+              to="/blog"
+              className="relative text-2xl font-bold transition-all duration-300 px-8 py-3 overflow-hidden group animate-fade-in-right backdrop-blur-none bg-transparent hover:scale-105"
+              style={{
+                animationDelay: `${7 * 0.1}s`,
+                textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              <span className="relative z-10 text-gray-800">Blog</span>
+              <span className="absolute bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500 group-hover:w-full"></span>
+            </Link>
           </div>
           
           {/* Social icons */}
