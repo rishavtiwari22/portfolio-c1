@@ -5,120 +5,128 @@ export const Experience: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    let isLoading = false;
+  // Create and setup intersection observer
+  const setupObserver = () => {
+    // Create new observer if it doesn't exist
+    if (!observerRef.current) {
+      observerRef.current = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            
+            // Trigger the animation with hardware acceleration
+            element.style.opacity = '1';
+            element.style.transform = 'translate3d(0, 0, 0)';
+            
+            // Animate the nested timeline card with a slight delay
+            const card = element.querySelector('.timeline-card') as HTMLElement;
+            if (card) {
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translate3d(0, 0, 0) rotateY(0)';
+              }, 200);
+            }
+            
+            // Unobserve after animation
+            observerRef.current?.unobserve(element);
+          }
+        });
+      }, { 
+        threshold: 0.1, // Lower threshold to trigger earlier
+        rootMargin: "0px 0px -5% 0px" // Adjusted to trigger when closer to viewport
+      });
+    }
+    return observerRef.current;
+  };
+
+  // Initialize timeline items
+  const initializeTimelineItems = () => {
+    if (experiences.length === 0) return;
     
-    const initializeTimelineItems = (elements: NodeListOf<Element>) => {
-      elements.forEach((el, idx) => {
+    // Use requestAnimationFrame for smoother visual updates
+    requestAnimationFrame(() => {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      const observer = setupObserver();
+      
+      if (timelineItems.length === 0) {
+        console.log('No timeline items found to animate');
+        return;
+      }
+      
+      timelineItems.forEach((el, index) => {
+        const isLeft = index % 2 === 0;
         const element = el as HTMLElement;
-        const side = idx % 2 === 0 ? 'left' : 'right';
-        element.dataset.position = side;
+        element.dataset.position = isLeft ? 'left' : 'right';
         
-        // Set initial state with hardware-accelerated transforms
-        element.style.transform = `translate3d(${side === 'left' ? '-30px' : '30px'}, 0, 0)`;
+        // Use translate3d for hardware acceleration
+        element.style.transform = `translate3d(${isLeft ? '-50px' : '50px'}, 0, 0)`;
         element.style.opacity = '0';
-        element.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+        element.style.transition = 'transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1)';
         element.style.willChange = 'transform, opacity';
         
-        // Initialize the timeline card with smoother animation
+        // Initialize the timeline card
         const card = element.querySelector('.timeline-card') as HTMLElement;
         if (card) {
-          card.style.transform = 'translate3d(0, 15px, 0)';
+          card.style.transform = 'translate3d(0, 20px, 0) rotateY(3deg)';
           card.style.opacity = '0';
-          card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+          card.style.transition = 'transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1), opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1)';
           card.style.willChange = 'transform, opacity';
         }
+        
+        observer.observe(element);
       });
-    };
-    
-    const setupObserver = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const element = entry.target as HTMLElement;
-              
-              // Reset transform to improve performance
-              element.style.transform = 'translate3d(0, 0, 0)';
-              element.style.opacity = '1';
-              
-              // Animate card with slight delay
-              const card = element.querySelector('.timeline-card') as HTMLElement;
-              if (card) {
-                setTimeout(() => {
-                  card.style.transform = 'translate3d(0, 0, 0)';
-                  card.style.opacity = '1';
-                }, 200);
-              }
-              
-              // Clean up will-change after animation
-              setTimeout(() => {
-                element.style.willChange = 'auto';
-                if (card) card.style.willChange = 'auto';
-              }, 1000);
-              
-              // Unobserve after animation
-              observer.unobserve(element);
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-          rootMargin: "0px 0px -10% 0px"
-        }
-      );
-      return observer;
-    };
-
+    });
+  };
+  
+  // Separate useEffect for fetching data
+  useEffect(() => {
     const fetchExperiences = async () => {
-      if (isLoading) return;
-      isLoading = true;
-      
       try {
         const res = await fetch('/data/content.json');
         if (!res.ok) throw new Error('Failed to fetch experiences');
         const data = await res.json();
         setExperiences(data.experience || []);
-        
-        // Wait for DOM update
-        requestAnimationFrame(() => {
-          const timelineItems = document.querySelectorAll('.timeline-item');
-          initializeTimelineItems(timelineItems);
-          
-          const observer = setupObserver();
-          observerRef.current = observer;
-          
-          timelineItems.forEach(item => observer.observe(item));
-        });
       } catch (error) {
         console.error('Error loading experiences:', error);
-      } finally {
-        isLoading = false;
       }
     };
-
+    
     fetchExperiences();
+  }, []);
+  
+  // Separate useEffect for observer setup that runs when experiences are loaded
+  useEffect(() => {
+    initializeTimelineItems();
+    
+    // Setup observer for the section to initialize items when it comes into view
+    const sectionObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        initializeTimelineItems();
+        sectionObserver.disconnect();
+      }
+    }, { threshold: 0.1 });
+    
+    if (sectionRef.current) {
+      sectionObserver.observe(sectionRef.current);
+    }
     
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
+      sectionObserver.disconnect();
     };
-  }, []);
+  }, [experiences]);
 
   return (
     <section id="experience" ref={sectionRef} className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-gray-100/30 to-orange-50/20 relative overflow-hidden w-full max-w-full">
-      {/* Enhanced background elements with dynamic animations */}
-      <div className="absolute top-40 -right-20 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '0s'}}></div>
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '3s'}}></div>
-      <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-pink-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '6s'}}></div>
-      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-200/20 rounded-full blur-3xl animate-blob" style={{animationDelay: '9s'}}></div>
+      {/* Optimized background elements with reduced quantity and complexity */}
+      <div className="absolute top-40 -right-20 w-96 h-96 bg-orange-200/15 rounded-full blur-xl animate-blob" style={{animationDuration: '35s', animationDelay: '0s'}}></div>
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-200/15 rounded-full blur-xl animate-blob" style={{animationDuration: '40s', animationDelay: '15s'}}></div>
       
-      {/* Enhanced brutalist geometric elements */}
-      <div className="absolute top-20 left-20 w-32 h-8 bg-orange-400/30 transform rotate-45 backdrop-blur-sm"></div>
-      <div className="absolute bottom-40 right-20 w-20 h-20 border-4 border-blue-400/30 transform -rotate-12 backdrop-blur-sm"></div>
-      <div className="absolute top-60 right-40 w-16 h-16 bg-pink-400/20 transform rotate-12 backdrop-blur-sm"></div>
-      <div className="absolute bottom-80 left-40 w-12 h-12 border-2 border-purple-400/30 transform rotate-45 backdrop-blur-sm"></div>
+      {/* Simplified brutalist geometric elements */}
+      <div className="absolute top-20 left-20 w-24 h-6 bg-orange-400/20 transform rotate-45"></div>
+      <div className="absolute bottom-40 right-20 w-16 h-16 border-2 border-blue-400/20 transform -rotate-12"></div>
       
       <div className="container-fluid relative z-10">
         <div className="w-full px-4 md:px-8 xl:px-12">
@@ -143,29 +151,23 @@ export const Experience: React.FC = () => {
           </div>
 
           <div className="max-w-6xl mx-auto relative">
-            {/* Timeline track with improved performance */}
+            {/* Optimized timeline track - improved visibility and reduced animations */}
             <div className="absolute left-0 md:left-1/2 top-12 h-[calc(100%-12px)] w-1 md:w-[4px]
                            bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 
-                           shadow-[0_0_15px_rgba(249,115,22,0.4)] z-0
-                           backdrop-blur-sm will-change-transform">
-              {/* Optimized animated light points */}
+                           shadow-[0_0_10px_rgba(249,115,22,0.4)] z-0">
+              {/* Reduced animated light points for better performance */}
               <div className="absolute inset-0 h-full overflow-hidden">
-                {[0, 1, 2, 3].map((i) => (
-                  <div key={i}
-                       className="absolute left-0 right-0 h-24 w-full transform -translate-y-1/2
-                                bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full" 
-                       style={{
-                         top: `${25 * i}%`,
-                         animationDuration: '4s',
-                         animationDelay: `${i}s`,
-                         willChange: 'opacity, transform'
-                       }}>
-                  </div>
-                ))}
+                {/* Only keep 2 light points instead of 4 */}
+                <div className="absolute top-1/4 -translate-y-1/2 left-0 right-0 h-20 w-full 
+                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full transform translateZ(0)" 
+                    style={{animationDuration: '6s', willChange: 'opacity'}}></div>
+                <div className="absolute top-3/4 -translate-y-1/2 left-0 right-0 h-20 w-full 
+                              bg-gradient-to-b from-orange-500 to-transparent animate-pulse rounded-full transform translateZ(0)"
+                    style={{animationDuration: '6s', animationDelay: '3s', willChange: 'opacity'}}></div>
               </div>
               
-              {/* Enhanced glow effect for better visibility */}
-              <div className="absolute inset-0 opacity-70 blur-md
+              {/* Enhanced static glow effect for better visibility - no animation */}
+              <div className="absolute inset-0 opacity-80
                             bg-gradient-to-b from-orange-400 via-orange-300 to-transparent"></div>
               
               {/* Refined outer glow for dark mode visibility - adjusted size */}
@@ -192,13 +194,11 @@ export const Experience: React.FC = () => {
                     <span className="absolute inset-2 rounded-full bg-gradient-to-tl from-white/40 to-transparent blur-md"></span>
                     <span className="absolute inset-[6px] rounded-full border border-white/40 dark:border-white/20"></span>
                     
-                    {/* Outer pulse animation rings with improved visibility */}
-                    <span className="absolute -inset-2 rounded-full bg-orange-400/40 transform scale-100 animate-ping" 
-                          style={{animationDuration: '3s', animationDelay: `${index * 0.5}s`}}></span>
-                    <span className="absolute -inset-4 rounded-full bg-orange-300/30 transform scale-100 animate-ping" 
-                          style={{animationDuration: '4s', animationDelay: `${index * 0.3}s`}}></span>
-                    <span className="absolute -inset-6 rounded-full bg-orange-200/10 transform scale-100 animate-ping" 
-                          style={{animationDuration: '5s', animationDelay: `${index * 0.2}s`}}></span>
+                    {/* Optimized pulse animation rings - reduced number and intensity for better performance */}
+                    <span className="absolute -inset-2 rounded-full bg-orange-400/40 transform scale-100 animate-ping will-change-transform" 
+                          style={{animationDuration: '4s', animationDelay: `${index * 0.5}s`, transform: 'translateZ(0)'}}></span>
+                    <span className="absolute -inset-4 rounded-full bg-orange-300/20 transform scale-100 animate-ping will-change-transform" 
+                          style={{animationDuration: '6s', animationDelay: `${index}s`, transform: 'translateZ(0)'}}></span>
                                   
                     {/* Extra outer glow for better visibility in dark mode */}
                     <span className="absolute -inset-2 rounded-full bg-orange-500/30 dark:bg-orange-400/40 blur-xl"></span>
@@ -208,14 +208,11 @@ export const Experience: React.FC = () => {
                 {/* Content card with enhanced professional design, wider width and more modern styling */}
                 <div 
                   className={`timeline-card md:w-[calc(48%-1rem)] ${index % 2 === 0 ? 'md:ml-auto md:mr-8' : 'md:ml-8 md:mr-auto'} 
-                          bg-gradient-to-br from-white/95 to-white/85
+                          bg-gradient-to-br from-white/90 to-white/70
                           border border-white/60
-                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] 
-                          transition-all duration-500 ease-out
-                          hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] transform 
-                          hover:scale-[1.02] hover:translate-y-[-5px] 
-                          relative overflow-hidden mt-6 md:mt-0
-                          backdrop-blur-md`}
+                          rounded-2xl p-7 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 
+                          group-hover:shadow-[0_25px_50px_0_rgba(255,140,0,0.25)] transform 
+                          group-hover:scale-[1.03] group-hover:translate-y-[-5px] relative overflow-hidden mt-6 md:mt-0`}
                   style={{ 
                     opacity: 0,
                     backdropFilter: 'blur(16px)', 

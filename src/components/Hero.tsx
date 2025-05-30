@@ -1,24 +1,20 @@
 import React from 'react';
-import { BriefcaseIcon, DownloadIcon, ArrowRightIcon } from './Icons';
+import { BriefcaseIcon, DownloadIcon } from './Icons';
+import { OptimizedImage } from './OptimizedImage';
 
 export const Hero: React.FC = () => {
   return (
     <section id="home" className="py-16 md:py-24 relative overflow-hidden w-full full-width-section">
-      {/* Advanced background with enhanced blend of styles and gradients */}
+      {/* Simplified background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-orange-50/20 to-purple-50/20 z-0"></div>
       
-      {/* Enhanced animated background elements with more vibrant colors and animations */}
-      <div className="absolute top-20 right-20 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl animate-pulse" style={{animationDuration: '15s'}}></div>
-      <div className="absolute -bottom-20 -left-20 w-[30rem] h-[30rem] bg-purple-200/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s', animationDuration: '18s'}}></div>
-      <div className="absolute top-1/4 left-1/3 w-60 h-60 bg-blue-200/20 rounded-full blur-2xl animate-blob" style={{animationDelay: '4s', animationDuration: '20s'}}></div>
+      {/* Reduced animated background elements */}
+      <div className="absolute top-20 right-20 w-64 h-64 bg-orange-200/20 rounded-full blur-2xl animate-blob" style={{animationDuration: '25s'}}></div>
+      <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-purple-200/15 rounded-full blur-2xl animate-blob" style={{animationDelay: '5s', animationDuration: '30s'}}></div>
       
-      {/* Abstract organic shapes with subtle animation */}
-      <div className="absolute top-40 left-1/4 w-64 h-64 bg-blue-300/10 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] blur-2xl animate-blob"></div>
-      <div className="absolute bottom-40 right-1/4 w-72 h-72 bg-pink-300/10 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] blur-2xl animate-blob" style={{animationDelay: '4s'}}></div>
-      
-      {/* Brutalist accent elements */}
-      <div className="absolute bottom-32 left-32 w-16 h-16 border-4 border-orange-500/20 rotate-12"></div>
-      <div className="absolute top-40 right-80 w-12 h-12 bg-blue-500/20 rotate-45"></div>
+      {/* Simple accent elements */}
+      <div className="absolute bottom-32 left-32 w-12 h-12 border-2 border-orange-500/20 rotate-12"></div>
+      <div className="absolute top-40 right-80 w-8 h-8 bg-blue-500/20 rotate-45"></div>
       
       <div className="container-fluid relative z-10">
         <div className="w-full px-5 md:px-10 xl:px-16">
@@ -122,63 +118,55 @@ export const Hero: React.FC = () => {
             </div>
             <div className="w-full lg:w-1/2 flex justify-center">
               <div className="relative">
-                {/* 3D-like layered background with animation */}
-                <div className="animate-spin-slow absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-400/20 to-purple-400/10 rounded-full blur-xl"></div>
-                <div className="animate-pulse absolute -z-10 -bottom-4 -right-4 w-40 h-40 bg-blue-300/20 rounded-full blur-lg" style={{animationDuration: '4s'}}></div>
-                <div className="animate-float absolute -z-10 -top-4 -left-4 w-32 h-32 bg-orange-400/30 rounded-full blur-md"></div>
+                {/* Simplified background elements */}
+                <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-orange-400/15 to-purple-400/10 rounded-full blur-lg animate-blob" style={{animationDuration: '30s'}}></div>
                 
-                {/* Brutalism accent - bold geometric shapes */}
-                <div className="absolute -z-5 bottom-20 -right-10 w-20 h-20 border-4 border-orange-500/30 rotate-12"></div>
-                <div className="absolute -z-5 -top-10 left-10 w-16 h-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-md rotate-45 animate-float" style={{animationDelay: '1s', animationDuration: '5s'}}></div>
+                {/* Minimal accent elements */}
+                <div className="absolute -z-5 bottom-20 -right-10 w-12 h-12 border-2 border-orange-500/20 rotate-12"></div>
                 
-                {/* Enhanced profile image with advanced glassmorphism, claymorphism, and neumorphism combo */}
-                <div className="group perspective-1000">
-                  <div className="glassmorphic backdrop-blur-xl bg-gradient-to-br from-white/50 to-white/20 border border-white/40 rounded-full p-5 
-                                shadow-[0_20px_70px_rgba(0,0,0,0.2)] transition-all duration-700 transform 
-                                hover:rotate-y-15 hover:scale-105 hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)]" 
+                {/* Optimized profile image container */}
+                <div className="group">
+                  <div className="glassmorphic bg-white/40 border border-white/30 rounded-full p-4 
+                                shadow-lg transition-all duration-300 transform 
+                                hover:scale-105" 
                        style={{ 
-                        backdropFilter: 'blur(20px)', 
-                        WebkitBackdropFilter: 'blur(20px)',
-                        boxShadow: 'inset 5px 5px 15px rgba(255,255,255,0.3), inset -5px -5px 15px rgba(0,0,0,0.1)'
+                        backdropFilter: 'blur(16px)', 
+                        WebkitBackdropFilter: 'blur(16px)'
                       }}>
-                    {/* Multiple inner rings with animation */}
-                    <div className="absolute inset-0 rounded-full border-2 border-dashed border-orange-300/40 animate-spin-slow"></div>
-                    <div className="absolute inset-2 rounded-full border-2 border-dashed border-blue-300/30 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '30s'}}></div>
-                    <div className="absolute inset-4 rounded-full border-1 border-dotted border-purple-300/20 animate-spin-slow" style={{animationDuration: '25s'}}></div>
                     
-                    {/* Enhanced image container with glow effects */}
-                    <div className="bg-gradient-to-br from-orange-400/90 to-orange-500/90 rounded-full w-80 h-80 flex items-center justify-center 
-                                  overflow-hidden border-4 border-white/60 shadow-[inset_0_0_30px_rgba(0,0,0,0.25)] 
-                                  glow-orange relative z-10">
-                      <div className="absolute inset-0 bg-gradient-to-tl from-transparent to-yellow-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <img 
-                        src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                    {/* Simplified image container */}
+                    <div className="bg-gradient-to-br from-orange-400 to-orange-500 rounded-full w-64 h-64 md:w-80 md:h-80 flex items-center justify-center 
+                                  overflow-hidden border-2 border-white/60 shadow-lg relative">
+                      <OptimizedImage 
+                        src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1" 
                         alt="John Doe" 
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
+                        width={320}
+                        height={320}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Floating badges with 3D and neumorphism effects */}
-                <div className="absolute top-10 -right-10 backdrop-blur-md bg-white/40 border border-white/30 px-5 py-3 rounded-xl shadow-[5px_5px_15px_rgba(0,0,0,0.1),-5px_-5px_15px_rgba(255,255,255,0.2)] transform rotate-6 animate-float">
+                {/* Simplified floating badges */}
+                <div className="absolute top-10 -right-10 backdrop-blur-sm bg-white/40 border border-white/30 px-4 py-2 rounded-lg shadow-md transform rotate-6">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-orange-500 rounded-full mr-2 animate-pulse"></div>
-                    <div className="text-orange-600 font-bold tracking-wide">Full-Stack</div>
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                    <div className="text-orange-600 font-semibold text-sm">Full-Stack</div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-10 -left-10 backdrop-blur-md bg-white/40 border border-white/30 px-5 py-3 rounded-xl shadow-[5px_5px_15px_rgba(0,0,0,0.1),-5px_-5px_15px_rgba(255,255,255,0.2)] transform -rotate-6 animate-float" style={{animationDelay: '1.5s'}}>
+                <div className="absolute -bottom-10 -left-10 backdrop-blur-sm bg-white/40 border border-white/30 px-4 py-2 rounded-lg shadow-md transform -rotate-6">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                    <div className="text-blue-600 font-bold tracking-wide">Designer</div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                    <div className="text-blue-600 font-semibold text-sm">Designer</div>
                   </div>
                 </div>
                 
-                {/* Tech stack badges - Minimal style */}
-                <div className="absolute top-40 -right-12 flex flex-col gap-3">
+                {/* Simplified tech stack badges */}
+                <div className="absolute top-40 -right-12 flex flex-col gap-2">
                   {['React', 'Node.js', 'TypeScript'].map((tech, i) => (
-                    <div key={tech} className="backdrop-blur-sm bg-gray-900/40 text-white px-3 py-1 rounded-md text-xs font-mono animate-fade-in-right" style={{animationDelay: `${i * 0.3}s`}}>
+                    <div key={tech} className="backdrop-blur-sm bg-gray-900/60 text-white px-3 py-1 rounded text-xs font-mono">
                       {tech}
                     </div>
                   ))}

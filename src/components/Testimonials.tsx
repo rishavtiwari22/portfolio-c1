@@ -1,62 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from './Icons';
 
-interface Testimonial {
-  name: string;
-  position: string;
-  text: string;
-  image: string;
-}
-
 export const Testimonials: React.FC = () => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const res = await fetch('/data/content.json', {
-          headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache'
-          }
-        });
-        
-        if (!res.ok) {
-          throw new Error(`Failed to fetch testimonials: ${res.status} ${res.statusText}`);
-        }
-
-        const data = await res.json();
-        
-        if (!data.testimonials || !Array.isArray(data.testimonials)) {
-          throw new Error('Invalid testimonials data format');
-        }
-
-        // Validate testimonial data
-        const validTestimonials = data.testimonials.filter((testimonial: any) => {
-          return (
-            testimonial &&
-            typeof testimonial.name === 'string' &&
-            typeof testimonial.position === 'string' &&
-            typeof testimonial.text === 'string' &&
-            typeof testimonial.image === 'string'
-          );
-        });
-
-        setTestimonials(validTestimonials);
-      } catch (error) {
-        console.error('Error fetching testimonials:', error);
-        setError(error instanceof Error ? error.message : 'Failed to load testimonials');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTestimonials();
+    fetch('/src/data/content.json')
+      .then(res => res.json())
+      .then(data => setTestimonials(data.testimonials || []));
   }, []);
 
   const nextTestimonial = () => {
@@ -69,34 +21,7 @@ export const Testimonials: React.FC = () => {
     );
   };
 
-  if (!testimonials.length && !isLoading && !error) {
-    return null;
-  }
-
-  if (isLoading) {
-    return (
-      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Loading testimonials...</h2>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4 text-red-500">Error loading testimonials</h2>
-            <p className="text-gray-300">{error}</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  if (!testimonials.length) return null;
 
   return (
     <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden w-full full-width-section">
@@ -138,10 +63,6 @@ export const Testimonials: React.FC = () => {
                         src={testimonials[currentIndex].image}
                         alt={testimonials[currentIndex].name}
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = '/images/placeholder-avatar.png';
-                        }}
                       />
                     </div>
                     <div>

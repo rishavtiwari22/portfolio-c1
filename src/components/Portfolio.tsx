@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { ExternalLinkIcon } from './Icons';
+import { OptimizedImage } from './OptimizedImage';
+import { useIntersectionAnimation, useOptimizedScroll } from '../hooks/useIntersectionAnimation';
 
 export const Portfolio: React.FC = () => {
   const categories = ['All', 'Web Design', 'Mobile App', 'UI/UX', 'Branding'];
@@ -7,8 +9,23 @@ export const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [lastScrollPosition, setLastScrollPosition] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  const { observe } = useIntersectionAnimation({
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+    delay: 100
+  });
+
+  // Memoize filtered projects to prevent unnecessary re-renders
+  const filteredProjects = useMemo(() => {
+    return activeCategory === 'All'
+      ? projects
+      : projects.filter(project => 
+          project.tags && project.tags.some((tag: string) => 
+            tag.toLowerCase().includes(activeCategory.toLowerCase())
+          )
+        );
+  }, [projects, activeCategory]);
 
   useEffect(() => {
     // Clear localStorage cache related to projects to prevent stale data

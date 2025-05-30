@@ -9,28 +9,11 @@
   box-sizing: border-box;
 }
 
-/* Set the body to full width and fix stacking context */
+/* Set the body to full width */
 body, html {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
-  position: relative;
-  scroll-behavior: smooth;
-}
-
-/* Ensure proper stacking context for fixed elements */
-body {
-  min-height: 100vh;
-}
-
-/* Fixed header styles to ensure proper rendering across browsers */
-header[style*="fixed"] {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  z-index: 9999 !important;
 }
 
 /* Light mode variables */
@@ -229,46 +212,6 @@ header[style*="fixed"] {
   overflow-x: hidden;
 }
 
-/* Smooth scrolling optimization */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 72px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-gutter: stable;
-  overflow-y: scroll;
-}
-
-/* Optimized container class for smoother reflows */
-.container-fluid {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Better scrolling performance */
-* {
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Optimize animations for better performance */
-.animate-all {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, opacity;
-}
-
-/* Smooth anchor scrolling with easing */
-[data-scroll] {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
 /* Enhanced full-width containers */
 .full-width-section {
   width: 100vw;
@@ -338,16 +281,18 @@ html {
   animation: spin-slow 20s linear infinite;
 }
 
-/* Blob animation */
+/* Optimized blob animation with hardware acceleration */
 @keyframes blob {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0px, 0px) scale(1); }
+  0% { transform: translate3d(0px, 0px, 0) scale(1); }
+  33% { transform: translate3d(15px, -10px, 0) scale(1.05); }
+  66% { transform: translate3d(-10px, 10px, 0) scale(0.95); }
+  100% { transform: translate3d(0px, 0px, 0) scale(1); }
 }
 
 .animate-blob {
-  animation: blob 12s ease-in-out infinite;
+  animation: blob 20s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
 /* Progress bar animation */
@@ -370,14 +315,22 @@ html {
   animation: count-up 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
 }
 
-/* Fade in from right animation */
+/* Optimized fade in from right animation */
 @keyframes fade-in-right {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from { 
+    opacity: 0; 
+    transform: translate3d(20px, 0, 0); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translate3d(0, 0, 0); 
+  }
 }
 
 .animate-fade-in-right {
-  animation: fade-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
 /* 3D rotation utilities */
