@@ -143,7 +143,7 @@ export const Contact: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="mt-12">
+                    {/* <div className="mt-12">
                       <h4 className="font-medium mb-4 backdrop-blur-sm bg-white/10 border border-white/10 p-2 rounded-lg inline-block">Connect with me</h4>
                       <div className="flex space-x-4">
                         {Object.entries(contact.social).map(([platform, url]) => (
@@ -159,7 +159,7 @@ export const Contact: React.FC = () => {
                           </a>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                     
                     {/* Calendar Booking Button */}
                     <div className="mt-8 pt-6 border-t border-white/20">

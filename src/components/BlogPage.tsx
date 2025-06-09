@@ -10,8 +10,10 @@ export const BlogPage: React.FC = () => {
   const location = useLocation();
   const { allPosts, categories } = useBlogContext();
   
+  // Detect if we're on the main blog page (/blog) and not in any specific blog post
+  const isMainBlogPage = location.pathname === '/blog';
   // Detect simple mode from URL parameters
-  const isSimpleMode = new URLSearchParams(location.search).get('mode') === 'simple';
+  const isSimpleMode = new URLSearchParams(location.search).get('mode') === 'simple' || isMainBlogPage;
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -80,42 +82,44 @@ export const BlogPage: React.FC = () => {
         </section>
       )}
 
-      <section className="relative px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <div className="relative max-w-md mx-auto">
-              <input
-                type="text"
-                placeholder="Search posts..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 pl-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white/80 backdrop-blur-sm"
-              />
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+      {!isSimpleMode && (
+        <section className="relative px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <div className="relative max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="Search posts..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-3 pl-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                />
+                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
               </div>
             </div>
+            
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {['All', ...categories].map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25 transform scale-105'
+                      : 'bg-white/80 text-gray-700 hover:bg-white hover:shadow-md border border-gray-200'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['All', ...categories].map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25 transform scale-105'
-                    : 'bg-white/80 text-gray-700 hover:bg-white hover:shadow-md border border-gray-200'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="relative px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-6xl mx-auto">
@@ -128,7 +132,7 @@ export const BlogPage: React.FC = () => {
           )}
 
           <div className={`transition-all duration-500 ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-            <div className={`grid gap-8 ${isSimpleMode ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {filteredPosts.map((post, index) => (
                 <article
                   key={post.id}

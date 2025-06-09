@@ -6,12 +6,9 @@ import { ExternalLinkIcon, ArrowLeftIcon } from './Icons';
 import { OptimizedImage } from './OptimizedImage';
 
 export const ProjectsPage: React.FC = () => {
-  const categories = ['All', 'Web Design', 'Mobile App', 'UI/UX', 'Branding'];
-  const [activeCategory, setActiveCategory] = useState('All');
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,26 +16,10 @@ export const ProjectsPage: React.FC = () => {
   // Check if we're in simple mode (accessed from "See All Projects" button)
   const isSimpleMode = new URLSearchParams(location.search).get('mode') === 'simple';
 
-  // Memoize filtered projects to prevent unnecessary re-renders
+  // No filtering, just use all projects
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
-      // Filter by category
-      const matchesCategory = activeCategory === 'All' || 
-        (project.tags && project.tags.some((tag: string) => 
-          tag.toLowerCase().includes(activeCategory.toLowerCase())
-        ));
-      
-      // Filter by search query
-      const matchesSearch = searchQuery === '' ||
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (project.tags && project.tags.some((tag: string) => 
-          tag.toLowerCase().includes(searchQuery.toLowerCase())
-        ));
-      
-      return matchesCategory && matchesSearch;
-    });
-  }, [projects, activeCategory, searchQuery]);
+    return projects;
+  }, [projects]);
 
   // Track initial mount
   const [isInitialMount, setIsInitialMount] = useState(true);
@@ -87,15 +68,15 @@ export const ProjectsPage: React.FC = () => {
     return () => controller.abort();
   }, []);
   
-  // Handle filtering with smooth transitions
+  // Handle loading transition
   useEffect(() => {
     if (!isInitialMount) {
-      // Show brief loading state when filters change
+      // Show brief loading state
       setIsLoading(true);
       const timer = setTimeout(() => setIsLoading(false), 300);
       return () => clearTimeout(timer);
     }
-  }, [activeCategory, searchQuery, isInitialMount]);
+  }, [isInitialMount]);
 
   // Add scroll event listener for scroll-to-top button
   useEffect(() => {
@@ -132,12 +113,12 @@ export const ProjectsPage: React.FC = () => {
           <div className="w-full px-5 md:px-10 xl:px-16">
             <div className="flex items-center justify-between mb-12">
               <button 
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/#portfolio')}
                 className="flex items-center text-gray-700 hover:text-orange-600 transition-all duration-300 group bg-white/60 backdrop-blur-md border border-white/40 px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                aria-label="Back to Home"
+                aria-label="Back to Projects Section"
               >
                 <ArrowLeftIcon className="w-5 h-5 mr-3 transform group-hover:-translate-x-2 transition-transform duration-300" />
-                <span className="font-semibold">Back to Home</span>
+                <span className="font-semibold">Back to Projects</span>
               </button>
               
               {isSimpleMode && (
@@ -165,75 +146,12 @@ export const ProjectsPage: React.FC = () => {
               </div>
             )}
 
-            {/* Search and Filter Section */}
-            <div className="mb-8 max-w-xl mx-auto animate-fade-in-up" style={{animationDelay: '0.9s'}}>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search projects..."
-                  className="w-full p-4 pl-12 pr-10 rounded-xl border border-white/40 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all bg-white/70 backdrop-blur-md shadow-lg"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <svg
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  ></path>
-                </svg>
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-300"
-                    aria-label="Clear search"
-                  >
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap justify-center mb-12 gap-3">
-              {categories.map((category, idx) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2.5 rounded-xl transition-all duration-500 transform hover:scale-105 ${
-                    activeCategory === category
-                      ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg hover:shadow-xl'
-                      : 'bg-white/70 text-gray-700 border border-white/40 hover:bg-white/90 hover:shadow-md'
-                  }`}
-                  style={{
-                    transitionDelay: `${idx * 50}ms`,
-                    animation: 'fadeIn 0.5s ease-out forwards',
-                    animationDelay: `${(idx * 50) + 1000}ms`
-                  }}
-                >
-                  <span className="relative overflow-hidden inline-block">
-                    {activeCategory === category && (
-                      <span className="absolute inset-0 bg-white/20 rounded animate-shine"></span>
-                    )}
-                    {category}
-                  </span>
-                </button>
-              ))}
-            </div>
+            {/* Spacing element - removed search and filter section */}
+            <div className="mb-12"></div>
 
             {/* Loading State */}
             {isLoading ? (
-              <div className={`animate-pulse grid gap-6 ${isSimpleMode ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
+              <div className="animate-pulse grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {[...Array(6)].map((_, index) => (
                   <div 
                     key={index} 
@@ -276,20 +194,11 @@ export const ProjectsPage: React.FC = () => {
                     <div className="text-5xl mb-6">🔍</div>
                     <h3 className="text-2xl font-semibold mb-4">No projects found</h3>
                     <p className="text-gray-600 mb-6">
-                      Try adjusting your search or filter to find what you're looking for.
+                      There are no projects available at this time.
                     </p>
-                    <button
-                      onClick={() => {
-                        setSearchQuery('');
-                        setActiveCategory('All');
-                      }}
-                      className="px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-                    >
-                      Reset Filters
-                    </button>
                   </div>
                 ) : (
-                  <div className={`grid gap-6 ${isSimpleMode ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
+                  <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {filteredProjects.map((project, index) => (
                       <div
                         key={project.id}

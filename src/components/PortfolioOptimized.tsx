@@ -19,13 +19,16 @@ export const Portfolio: React.FC = () => {
 
   // Memoize filtered projects to prevent unnecessary re-renders
   const filteredProjects = useMemo(() => {
-    return activeCategory === 'All'
+    let filtered = activeCategory === 'All'
       ? projects
       : projects.filter(project => 
           project.tags && project.tags.some((tag: string) => 
             tag.toLowerCase().includes(activeCategory.toLowerCase())
           )
         );
+    
+    // Only show first 3 projects on main page
+    return filtered.slice(0, 3);
   }, [projects, activeCategory]);
 
   useEffect(() => {
@@ -133,20 +136,6 @@ export const Portfolio: React.FC = () => {
               Here are some of my recent projects that I've worked on. Each project has been
               carefully crafted to meet client needs and deliver exceptional results.
             </p>
-            <Link 
-              to="/projects?mode=simple" 
-              className="inline-flex items-center backdrop-blur-sm bg-white/50 text-blue-600 border border-blue-300/30 
-                       hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white 
-                       px-8 py-3 rounded-xl transition-all font-medium shadow-md 
-                       hover:shadow-blue-300/30 hover:shadow-lg group transform hover:-translate-y-1"
-              aria-label="View all projects"
-            >
-              <span className="mr-2">See All Projects</span>
-              <svg className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" 
-                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
           </div>
 
           {/* Filter Buttons */}
@@ -228,7 +217,7 @@ export const Portfolio: React.FC = () => {
           <div className="text-center mt-16">
             <Link
               to="/projects?mode=simple"
-              className="inline-flex items-center px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+              className="inline-flex items-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium text-lg hover:shadow-xl shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 group"
             >
               <span className="mr-2">See All Projects</span>
               <svg
@@ -245,6 +234,7 @@ export const Portfolio: React.FC = () => {
                 ></path>
               </svg>
             </Link>
+            <p className="text-sm text-gray-600 mt-3">Displaying 3 of {projects.length} projects</p>
           </div>
         </div>
       </div>
