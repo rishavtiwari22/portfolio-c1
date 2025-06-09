@@ -1,67 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import { CalendarIcon, UserIcon, ArrowRightIcon } from './Icons';
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRightIcon } from './Icons';
+import { useBlogContext } from '../context/BlogContext';
 
 export const BlogPosts: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { getFeaturedPosts } = useBlogContext();
   
-  // Enhanced blog posts with more engaging design and information
-  const posts = [
-    {
-      id: 1,
-      title: "Design Unleashed: Behind the Scenes of UI/UX Process",
-      excerpt: "An insider look at how I approach UI/UX projects from research to final delivery.",
-      image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      date: "15 June 2023",
-      author: "John Doe",
-      category: "UI Design",
-      readingTime: "5 min read",
-      tags: ["Design", "UI/UX", "Research"]
-    },
-    {
-      id: 2,
-      title: "Sugee: Loan Management Dashboard Success Story",
-      excerpt: "How I designed and developed a loan management system that increased efficiency by 45%.",
-      image: "https://images.pexels.com/photos/6693655/pexels-photo-6693655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      date: "23 Aug 2023",
-      author: "John Doe",
-      category: "Case Study",
-      readingTime: "8 min read",
-      tags: ["Dashboard", "Finance", "UX Design"]
-    },
-    {
-      id: 3,
-      title: "ChatMatic: Innovative way to Direct Message in Digital Media",
-      excerpt: "The story behind creating a messaging app that stands out in a crowded market.",
-      image: "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      date: "10 Sep 2023",
-      author: "John Doe",
-      category: "App Design",
-      readingTime: "6 min read",
-      tags: ["Mobile", "Messaging", "UI Design"]
-    }
-  ];
-  
-  useEffect(() => {
-    // Add scroll animation observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animate-fade-in-right');
-            (entry.target as HTMLElement).style.opacity = '1';
-          }, 100 * index);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    const articleElements = document.querySelectorAll('.blog-card');
-    articleElements.forEach(el => {
-      (el as HTMLElement).style.opacity = '0';
-      observer.observe(el);
-    });
-    
-    return () => observer.disconnect();
-  }, []);
+  // Show only 3 featured blog posts on the main page
+  const featuredPosts = getFeaturedPosts(3);
 
   return (
     <section id="blog" ref={sectionRef} className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-blue-50/5 to-orange-50/10 relative overflow-hidden w-full full-width-section">
@@ -95,27 +42,27 @@ export const BlogPosts: React.FC = () => {
             </p>
             
             {/* Improved button with better hover effects */}
-            <a 
-              href="#" 
+            <Link 
+              to="/blog?mode=simple" 
               className="flex items-center backdrop-blur-sm bg-white/50 text-orange-600 border border-orange-300/30 
                        hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white 
                        px-8 py-3 rounded-xl transition-all font-medium shadow-md 
                        hover:shadow-orange-300/30 hover:shadow-lg group transform hover:-translate-y-1"
+              aria-label="View all blog posts"
             >
               <span className="mr-2">View All Posts</span>
               <ArrowRightIcon className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post, index) => (
+            {featuredPosts.length > 0 ? featuredPosts.map((post, index) => (
               <article 
-                key={post.id} 
+                key={post.id}
                 className="blog-card glassmorphic bg-white/70 border-0 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(8,_112,_184,_0.1)] 
                           hover:shadow-[0_15px_60px_rgba(8,_112,_184,_0.2)] transition-all duration-500 
                           hover:-translate-y-2 group flex flex-col h-full transform perspective-1000"
                 style={{ 
-                  opacity: 0,
                   backdropFilter: 'blur(16px)', 
                   WebkitBackdropFilter: 'blur(16px)',
                   transformStyle: 'preserve-3d',
@@ -127,27 +74,16 @@ export const BlogPosts: React.FC = () => {
                 }}
               >
                 <div className="relative h-56 overflow-hidden group/image">
-                  {/* Enhanced gradient overlay with more vibrant colors and animation */}
+                  {/* Enhanced gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400/40 via-purple-300/30 to-orange-300/30 z-0 
                                 opacity-60 group-hover:opacity-90 transition-all duration-500 transform 
                                 group-hover:scale-110"></div>
                   
-                  {/* Enhanced abstract decorative elements with animation */}
-                  <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-blue-400/30 rounded-full blur-xl 
-                                animate-pulse" style={{animationDuration: '8s'}}></div>
-                  <div className="absolute top-4 left-4 w-16 h-16 border-4 border-white/40 rounded-full transform -rotate-12 z-10
-                                group-hover:-rotate-45 transition-transform duration-700"></div>
-                  
-                  {/* Brutalist accent element - depends on category */}
-                  {post.category === "UI Design" && (
-                    <div className="absolute top-0 left-0 w-20 h-5 bg-blue-500/70 z-10"></div>
-                  )}
-                  {post.category === "Case Study" && (
-                    <div className="absolute top-0 right-0 w-5 h-20 bg-orange-500/70 z-10"></div>
-                  )}
-                  {post.category === "App Design" && (
-                    <div className="absolute top-12 right-12 w-10 h-10 bg-purple-500/70 transform rotate-45 z-10"></div>
-                  )}
+                  {/* Category badge */}
+                  <div className="absolute top-4 left-4 backdrop-blur-md bg-white/30 border border-white/30 
+                                text-white px-4 py-1.5 rounded-full z-10 shadow-lg">
+                    <span className="text-xs font-semibold tracking-wide">{post.category}</span>
+                  </div>
                   
                   <img 
                     src={post.image} 
@@ -156,46 +92,39 @@ export const BlogPosts: React.FC = () => {
                              group-hover:rotate-1 opacity-90 group-hover:opacity-100"
                   />
                   
-                  {/* Glassmorphic badge with enhanced design */}
-                  <div className="absolute top-4 left-4 backdrop-blur-md bg-white/30 border border-white/30 
-                                text-white px-4 py-1.5 rounded-full z-10 shadow-lg transform 
-                                group-hover:translate-y-1 transition-transform">
-                    <span className="text-xs font-semibold tracking-wide">{post.category}</span>
-                  </div>
-                  
-                  {/* Reading time badge - neumorphic style */}
+                  {/* Reading time badge */}
                   <div className="absolute bottom-4 right-4 backdrop-blur-md bg-white/40 text-gray-800 
-                                text-xs px-3 py-1 rounded-full z-10 border border-white/30 shadow-neumorphic-light
-                                transform group-hover:scale-110 transition-transform">
+                                text-xs px-3 py-1 rounded-full z-10 border border-white/30">
                     <span>{post.readingTime}</span>
                   </div>
                 </div>
                 
                 <div className="p-7 bg-white/90 flex-1 flex flex-col relative z-10 border-t border-white/20">
-                  {/* Stylish date display with calendar icon */}
-                  <div className="flex items-center text-sm text-gray-600 mb-3 backdrop-blur-sm bg-white/50 
-                                border border-white/30 px-4 py-2 rounded-xl w-fit shadow-inner-neumorphic">
-                    <CalendarIcon className="w-4 h-4 mr-1.5 text-blue-500" />
+                  {/* Date display */}
+                  <div className="flex items-center text-sm text-gray-600 mb-3">
                     <span>{post.date}</span>
                   </div>
                   
-                  {/* Title with enhanced clarity and smooth gradient transition */}
+                  {/* Title */}
                   <h3 className="text-xl font-bold mb-3 relative z-10">
-                    <a href="#" className="text-gray-800 hover:text-transparent hover:bg-gradient-to-r 
-                                      hover:from-blue-600 hover:to-purple-600 hover:bg-clip-text 
-                                      transition-colors duration-300 line-clamp-2 block">
+                    <Link 
+                      to={`/blog/${post.id}`} 
+                      className="text-gray-800 hover:text-transparent hover:bg-gradient-to-r 
+                                hover:from-blue-600 hover:to-purple-600 hover:bg-clip-text 
+                                transition-colors duration-300 line-clamp-2 block"
+                    >
                       {post.title}
-                    </a>
+                    </Link>
                   </h3>
                   
-                  {/* Excerpt with clean typography */}
+                  {/* Excerpt */}
                   <p className="text-gray-600 mb-4 flex-1">{post.excerpt}</p>
                   
-                  {/* Tag cloud */}
+                  {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {post.tags.map((tag, i) => (
                       <span key={i} className="text-xs bg-white/60 text-gray-600 px-2.5 py-1 rounded-full 
-                                            border border-white/50 transform transition-all duration-300 
+                                            border border-white/50 transition-all duration-300 
                                             hover:bg-blue-50 hover:border-blue-200/50 hover:text-blue-600">
                         #{tag}
                       </span>
@@ -203,19 +132,19 @@ export const BlogPosts: React.FC = () => {
                   </div>
                   
                   <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
-                    {/* Author info with hover effect */}
+                    {/* Author info */}
                     <div className="flex items-center group/author">
                       <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400/80 to-purple-500/80 
                                     flex items-center justify-center overflow-hidden mr-2 border border-white/30
                                     shadow-md group-hover/author:shadow-lg transition-all">
-                        <UserIcon className="w-4 h-4 text-white" />
+                        <span className="text-white text-sm font-semibold">{post.author.charAt(0)}</span>
                       </div>
                       <span className="text-sm font-medium text-gray-700 group-hover/author:text-blue-600 transition-colors">{post.author}</span>
                     </div>
                     
-                    {/* Read more button with improved animated hover effect */}
-                    <a 
-                      href="#" 
+                    {/* Read more button */}
+                    <Link 
+                      to={`/blog/${post.id}`}
                       className="backdrop-blur-sm bg-white/60 border border-orange-300/30 text-orange-600 px-5 py-2 
                               rounded-xl transition-all font-medium flex items-center relative overflow-hidden group/btn
                               hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white 
@@ -223,21 +152,25 @@ export const BlogPosts: React.FC = () => {
                               transform duration-300"
                     >
                       <span className="relative z-10">Read More</span>
-                      <ArrowRightIcon className="w-4 h-4 ml-1.5 transition-all transform group-hover/btn:translate-x-1.5" />
-                      {/* Button hover animation */}
-                      <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-0 
-                                     group-hover/btn:opacity-100 -z-0 transition-opacity duration-300"></span>
-                    </a>
+                      <svg className="w-4 h-4 ml-1.5 transition-all transform group-hover/btn:translate-x-1.5" 
+                           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </article>
-            ))}
+            )) : (
+              <div className="col-span-full text-center text-gray-500">
+                No blog posts available
+              </div>
+            )}
           </div>
 
           <div className="mt-12 text-center md:hidden">
             {/* Mobile view button with improved styling */}
-            <a 
-              href="#" 
+            <Link 
+              to="/blog?mode=simple" 
               className="inline-flex items-center px-8 py-3 rounded-xl relative overflow-hidden group"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-orange-600 
@@ -248,7 +181,7 @@ export const BlogPosts: React.FC = () => {
                 <span className="mr-2">View All Posts</span>
                 <ArrowRightIcon className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

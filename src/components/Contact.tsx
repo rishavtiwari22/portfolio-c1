@@ -160,6 +160,39 @@ export const Contact: React.FC = () => {
                         ))}
                       </div>
                     </div>
+                    
+                    {/* Calendar Booking Button */}
+                    <div className="mt-8 pt-6 border-t border-white/20">
+                      <a 
+                        href="https://calendly.com/rishav-navgurukul/30min" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full backdrop-blur-md bg-white/20 border border-white/30 
+                                 hover:bg-white/30 transition-all duration-300 rounded-xl p-4 group
+                                 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                      >
+                        <div className="flex items-center justify-center space-x-3">
+                          <div className="w-8 h-8 bg-white/30 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                          </div>
+                          <div className="text-center">
+                            <p className="font-semibold text-white group-hover:text-white/90 transition-colors">
+                              Schedule a Call
+                            </p>
+                            <p className="text-sm text-white/80 group-hover:text-white/70 transition-colors">
+                              Book a free consultation
+                            </p>
+                          </div>
+                          <svg className="w-5 h-5 text-white/70 group-hover:translate-x-1 transition-transform" 
+                               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 {/* Contact Form */}
@@ -172,11 +205,10 @@ export const Contact: React.FC = () => {
                   <div className="absolute bottom-8 right-8 w-12 h-3 bg-orange-400/20 transform rotate-45"></div>
                   
                   <form onSubmit={handleSubmit} className="relative z-10">
-                    <div className="mb-8">
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 
-                                                 bg-gradient-to-r from-white/50 to-white/30 
-                                                 px-4 py-2 rounded-lg border border-white/30 
-                                                 inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
+                    <div className="mb-8">                      <label htmlFor="name" className="inline-block text-sm font-medium text-gray-700 mb-2 
+                                                 bg-gradient-to-r from-white/50 to-white/30
+                                                 px-4 py-2 rounded-lg border border-white/30
+                                                 shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Your Name
                       </label>
                       <input
@@ -195,10 +227,10 @@ export const Contact: React.FC = () => {
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 
+                      <label htmlFor="email" className="inline-block text-sm font-medium text-gray-700 mb-2 
                                                  bg-gradient-to-r from-white/50 to-white/30
                                                  px-4 py-2 rounded-lg border border-white/30
-                                                 inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
+                                                 shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Your Email
                       </label>
                       <input
@@ -217,10 +249,10 @@ export const Contact: React.FC = () => {
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2 
+                      <label htmlFor="subject" className="inline-block text-sm font-medium text-gray-700 mb-2 
                                                  bg-gradient-to-r from-white/50 to-white/30
                                                  px-4 py-2 rounded-lg border border-white/30
-                                                 inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
+                                                 shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Subject
                       </label>
                       <input
@@ -239,10 +271,10 @@ export const Contact: React.FC = () => {
                       />
                     </div>
                     <div className="mb-6">
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2 
+                      <label htmlFor="message" className="inline-block text-sm font-medium text-gray-700 mb-2 
                                                  bg-gradient-to-r from-white/50 to-white/30
                                                  px-4 py-2 rounded-lg border border-white/30
-                                                 inline-block shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
+                                                 shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5">
                         Message
                       </label>
                       <textarea

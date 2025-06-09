@@ -6,9 +6,10 @@ export const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch('/src/data/content.json')
+    fetch('/data/content.json')
       .then(res => res.json())
-      .then(data => setTestimonials(data.testimonials || []));
+      .then(data => setTestimonials(data.testimonials || []))
+      .catch(error => console.error('Error fetching testimonials data:', error));
   }, []);
 
   const nextTestimonial = () => {

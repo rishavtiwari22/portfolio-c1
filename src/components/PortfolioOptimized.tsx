@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { ExternalLinkIcon } from './Icons';
 import { OptimizedImage } from './OptimizedImage';
 import { useIntersectionAnimation } from '../hooks/useIntersectionAnimation';
@@ -126,12 +127,26 @@ export const Portfolio: React.FC = () => {
               <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text font-medium">Creative Projects</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-800 via-blue-700 to-purple-800 bg-clip-text text-transparent">
-              Let's have a look at my Portfolio
+              Let's have a look at my Projects
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto backdrop-blur-lg bg-white/40 p-5 rounded-xl border border-white/30 shadow-lg">
+            <p className="text-gray-600 max-w-2xl mx-auto backdrop-blur-lg bg-white/40 p-5 rounded-xl border border-white/30 shadow-lg mb-6">
               Here are some of my recent projects that I've worked on. Each project has been
               carefully crafted to meet client needs and deliver exceptional results.
             </p>
+            <Link 
+              to="/projects?mode=simple" 
+              className="inline-flex items-center backdrop-blur-sm bg-white/50 text-blue-600 border border-blue-300/30 
+                       hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white 
+                       px-8 py-3 rounded-xl transition-all font-medium shadow-md 
+                       hover:shadow-blue-300/30 hover:shadow-lg group transform hover:-translate-y-1"
+              aria-label="View all projects"
+            >
+              <span className="mr-2">See All Projects</span>
+              <svg className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform" 
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
 
           {/* Filter Buttons */}
@@ -211,9 +226,9 @@ export const Portfolio: React.FC = () => {
           </div>
 
           <div className="text-center mt-16">
-            <a
-              href="#"
-              className="inline-flex items-center px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            <Link
+              to="/projects?mode=simple"
+              className="inline-flex items-center px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
             >
               <span className="mr-2">See All Projects</span>
               <svg
@@ -229,7 +244,7 @@ export const Portfolio: React.FC = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

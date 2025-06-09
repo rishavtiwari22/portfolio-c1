@@ -165,7 +165,7 @@ export const Hero: React.FC = () => {
                 
                 {/* Simplified tech stack badges */}
                 <div className="absolute top-40 -right-12 flex flex-col gap-2">
-                  {['React', 'Node.js', 'TypeScript'].map((tech, i) => (
+                  {['React', 'Node.js', 'TypeScript'].map((tech) => (
                     <div key={tech} className="backdrop-blur-sm bg-gray-900/60 text-white px-3 py-1 rounded text-xs font-mono">
                       {tech}
                     </div>

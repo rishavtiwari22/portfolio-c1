@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { MenuIcon as Menu, XIcon as X } from './Icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+
+  // Check if we're on the blog page
+  const isBlogPage = location.pathname.startsWith('/blog');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +20,7 @@ export const Navbar: React.FC = () => {
       }
       
       // Handle active section detection (scroll spy)
-      const sections = ['home', 'services', 'experience', 'portfolio', 'testimonials', 'contact'];
+      const sections = ['home', 'services', 'experience', 'portfolio', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -55,7 +58,7 @@ export const Navbar: React.FC = () => {
               <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300">JD</span>
             </div>
             <div className="ml-3">
-              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Portfolio</span>
+              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Projects</span>
               <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"></div>
             </div>
           </div>
@@ -64,12 +67,45 @@ export const Navbar: React.FC = () => {
             {/* Desktop Navigation with glassmorphic active indicators */}
             <nav className="hidden md:flex">
               <div className="flex space-x-1 backdrop-blur-xl glassmorphic-light border border-white/30 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.05)]">
-                {['Home', 'Services', 'Experience', 'Portfolio', 'Testimonials', 'Contact'].map((item) => {
-                  const isActive = activeSection === item.toLowerCase();
+                {['Home', 'Services', 'Experience', 'Projects', 'Blog', 'Contact'].map((item) => {
+                  const isActive = activeSection === (item === 'Projects' ? 'portfolio' : item.toLowerCase()) || (item === 'Blog' && isBlogPage);
+                  const sectionId = item === 'Projects' ? 'portfolio' : item.toLowerCase();
+                  
+                  if (item === 'Blog') {
+                    return (
+                      <a
+                        key={item}
+                        href={isBlogPage ? "/" : "/#blog"}
+                        onClick={(e) => {
+                          if (isBlogPage) {
+                            // Navigate home first
+                          } else {
+                            // Smooth scroll to blog section
+                            e.preventDefault();
+                            document.getElementById('blog')?.scrollIntoView({
+                              behavior: 'smooth'
+                            });
+                          }
+                        }}
+                        className={`relative px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
+                          isActive 
+                            ? 'text-white' 
+                            : 'text-gray-700 hover:text-gray-900'
+                        }`}
+                      >
+                        {/* Active background pill with animation */}
+                        {isActive && (
+                          <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full z-0 animate-fade-in-right"></span>
+                        )}
+                        <span className="relative z-10">{item}</span>
+                      </a>
+                    );
+                  }
+                  
                   return (
                     <a 
                       key={item} 
-                      href={`#${item.toLowerCase()}`}
+                      href={`#${sectionId}`}
                       className={`relative px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
                         isActive 
                           ? 'text-white' 
@@ -125,8 +161,34 @@ export const Navbar: React.FC = () => {
           
           {/* Links with staggered animation */}
           <div className="flex flex-col items-center space-y-8 relative z-10 bg-transparent py-8">
-            {['Home', 'Services', 'Experience', 'Portfolio', 'Testimonials', 'Contact'].map((item, index) => {
-              const isActive = activeSection === item.toLowerCase();
+            {['Home', 'Services', 'Experience', 'Projects', 'Blog', 'Contact'].map((item, index) => {
+              const isActive = activeSection === (item === 'Projects' ? 'portfolio' : item.toLowerCase()) || (item === 'Blog' && isBlogPage);
+              
+              if (item === 'Blog') {
+                return (
+                  <a
+                    key={item}
+                    href="#blog"
+                    className={`relative text-2xl font-bold transition-all duration-300 px-8 py-3 overflow-hidden group animate-fade-in-right backdrop-blur-none bg-transparent hover:scale-105`}
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                      textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                    }}
+                    onClick={() => {
+                      setIsOpen(false);
+                      const element = document.getElementById('blog');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <span className={`relative z-10 ${isActive ? 'bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent' : 'text-gray-800'}`}>
+                      {item}
+                    </span>
+                    {/* Animated underline with glow */}
+                    <span className={`absolute bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500 group-hover:w-full ${isActive ? 'w-full shadow-lg' : ''}`}></span>
+                  </a>
+                );
+              }
+              
               return (
                 <a 
                   key={item} 
