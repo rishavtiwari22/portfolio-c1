@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
               <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300">TK</span>
             </div>
             <div className="ml-3">
-              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Resume</span>
+              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Portfolio</span>
               <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"></div>
             </div>
           </div>
