@@ -17,10 +17,10 @@ export const Footer: React.FC = () => {
             <div className="flex items-center mb-6 group">
               <div className="relative mr-3">
                 <span className="absolute inset-0 bg-gradient-to-br from-orange-500 via-red-500 to-orange-500 rounded-full blur-sm transform group-hover:scale-110 transition-transform duration-300"></span>
-                <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300 border border-white/20">JD</span>
+                <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300 border border-white/20">TK</span>
               </div>
               <div>
-                <span className="font-bold text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent transform transition-all duration-300">Projects</span>
+                <span className="font-bold text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent transform transition-all duration-300">Portfolio</span>
                 <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"></div>
               </div>
             </div>
@@ -200,7 +200,7 @@ export const Footer: React.FC = () => {
           <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(255,140,0,0.07)] transition-all duration-500">
             <h3 className="text-xl font-semibold mb-5 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent inline-block">Pages</h3>
             <ul className="space-y-3">
-              {['Home', 'Services', 'Experience', 'Projects', 'Testimonials', 'Contact'].map((item) => (
+              {['Home', 'Certificate', 'Experience', 'Projects', 'Blog', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
