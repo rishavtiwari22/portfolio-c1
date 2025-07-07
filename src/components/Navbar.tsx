@@ -55,10 +55,10 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center group">
             <div className="relative">
               <span className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 rounded-full blur-sm transform group-hover:scale-110 transition-transform duration-300"></span>
-              <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300">JD</span>
+              <span className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-300">TK</span>
             </div>
             <div className="ml-3">
-              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Projects</span>
+              <span className="font-bold text-xl bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent transform transition-all duration-300">Resume</span>
               <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-300"></div>
             </div>
           </div>
@@ -67,7 +67,7 @@ export const Navbar: React.FC = () => {
             {/* Desktop Navigation with glassmorphic active indicators */}
             <nav className="hidden md:flex">
               <div className="flex space-x-1 backdrop-blur-xl glassmorphic-light border border-white/30 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.05)]">
-                {['Home', 'Services', 'Experience', 'Projects', 'Blog', 'Contact'].map((item) => {
+                {['Home', 'Certificate', 'Experience', 'Projects', 'Blog', 'Contact'].map((item) => {
                   const isActive = activeSection === (item === 'Projects' ? 'portfolio' : item.toLowerCase()) || (item === 'Blog' && isBlogPage);
                   const sectionId = item === 'Projects' ? 'portfolio' : item.toLowerCase();
                   
@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
           
           {/* Links with staggered animation */}
           <div className="flex flex-col items-center space-y-8 relative z-10 bg-transparent py-8">
-            {['Home', 'Services', 'Experience', 'Projects', 'Blog', 'Contact'].map((item, index) => {
+            {['Home', 'Certificate', 'Experience', 'Projects', 'Blog', 'Contact'].map((item, index) => {
               const isActive = activeSection === (item === 'Projects' ? 'portfolio' : item.toLowerCase()) || (item === 'Blog' && isBlogPage);
               
               if (item === 'Blog') {
