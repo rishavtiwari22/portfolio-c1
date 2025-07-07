@@ -78,20 +78,46 @@ export const Experience: React.FC = () => {
     });
   };
   
-  // Separate useEffect for fetching data
+  // Replace fetched experiences with hardcoded journey steps
   useEffect(() => {
-    const fetchExperiences = async () => {
-      try {
-        const res = await fetch('/data/content.json');
-        if (!res.ok) throw new Error('Failed to fetch experiences');
-        const data = await res.json();
-        setExperiences(data.experience || []);
-      } catch (error) {
-        console.error('Error loading experiences:', error);
-      }
-    };
-    
-    fetchExperiences();
+    setExperiences([
+      {
+        id: 1,
+        position: 'B.Tech in Electronics & Communication',
+        period: '2015 - 2019',
+        company: 'Undergraduate Studies',
+        location: 'India',
+        description: `Began my journey in technology and engineering, building a strong foundation in electronics, communication, and programming.`,
+        skills: ['Electronics', 'Communication', 'Programming'],
+      },
+      {
+        id: 2,
+        position: 'M.Tech in Electronics & Communication',
+        period: '2019 - 2021',
+        company: 'Postgraduate Studies',
+        location: 'India',
+        description: `Specialized in advanced electronics and communication, deepening my expertise and starting to mentor students in AIML and IoT.`,
+        skills: ['AIML', 'IoT', 'Mentorship', 'Research'],
+      },
+      {
+        id: 3,
+        position: 'PhD (Visvesvaraya Scheme, MeitY)',
+        period: '2021 - Present',
+        company: 'Doctoral Research',
+        location: 'India',
+        description: `Currently pursuing a PhD under the Visvesvaraya Scheme, supported by the Ministry of Electronics and Information Technology (MeitY), focusing on innovative technologies and real-world impact.`,
+        skills: ['PhD', 'Visvesvaraya Scheme', 'MeitY', 'Innovation'],
+      },
+      {
+        id: 4,
+        position: 'IoT-based Healthcare Monitoring Project',
+        period: '2020',
+        company: 'Project Leadership',
+        location: 'India',
+        description: `Guided a group of students to create an IoT-based healthcare monitoring system that uses AIML to predict health risks—combining real-time sensor data with machine learning to alert users before issues escalate.`,
+        skills: ['IoT', 'Machine Learning', 'Healthcare', 'Student Projects'],
+      },
+    ]);
   }, []);
   
   // Separate useEffect for observer setup that runs when experiences are loaded
@@ -144,7 +170,7 @@ export const Experience: React.FC = () => {
             
             <div className="relative">
               <p className="text-gray-700 max-w-2xl mx-auto bg-white/90 p-6 rounded-xl border border-gray-100 shadow-[0_15px_35px_rgba(0,0,0,0.05)] transform hover:shadow-xl hover:scale-[1.01] transition-all duration-500 leading-relaxed">
-                I have worked with various companies and clients, gaining valuable experience and skills along the way.
+                My journey in the educational field is driven by a passion for innovation, hands-on learning, and empowering students from all backgrounds. Explore the steps below to see how I combine AIML, IoT, and mentorship to make a real-world impact.
               </p>
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-70"></div>
             </div>
@@ -319,7 +345,7 @@ export const Experience: React.FC = () => {
                 <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              bg-clip-text text-transparent drop-shadow-sm">8+</span>
+                              bg-clip-text text-transparent drop-shadow-sm">4+</span>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
                               transition-colors uppercase tracking-wider">Years Experience</span>
               </div>
@@ -361,9 +387,9 @@ export const Experience: React.FC = () => {
                 <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              bg-clip-text text-transparent drop-shadow-sm">30+</span>
+                              bg-clip-text text-transparent drop-shadow-sm">600+</span>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
-                              transition-colors uppercase tracking-wider">Clients</span>
+                              transition-colors uppercase tracking-wider">Students</span>
               </div>
             </div>
           </div>
