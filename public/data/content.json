@@ -1,6 +1,6 @@
 {
   "hero": {
-    "name": "Sajal",
+    "name": "Rishav Tiwari",
     "title": "Full-Stack Developer",
     "description": "A passionate developer with 8+ years of experience creating beautiful, functional, and user-centered digital experiences.",
     "image": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -79,64 +79,88 @@
     }
   ],
   "contact": {
-    "email": "john.doe@example.com",
-    "phone": "+91 123 456 7890",
-    "location": "Mumbai, India",
+    "email": "tiwaririshav463@gmail.com",
+    "phone": "+91 9336648747",
+    "location": "Prayagraj, Uttar Pradesh, India",
     "social": {
       "twitter": "#",
-      "linkedin": "#",
-      "github": "#",
+      "linkedin": "www.linkedin.com/in/rishavtiwari22",
+      "github": "https://github.com/rishavtiwari22",
       "dribbble": "#"
     }
   },
   "projects": [
     {
       "id": 1,
-      "title": "Sugee - Loan Management Dashboard",
-      "description": "A comprehensive loan management dashboard for a financial technology company.",
-      "image": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["UI/UX", "Web Design"],
-      "link": "#"
+      "title": "Two-Player Quiz Game",
+      "description": "Developed a responsive two-player quiz game with Trivia API integration, featuring dynamic questions, real-time score tracking, and engaging gameplay mechanics. Focused on efficient state management, API interaction, and adaptive design for an immersive experience deployed on Vercel.",
+      "image": "https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["React", "JavaScript", "API Integration", "Vercel"],
+      "link": "https://rishavtiwari22-trivia-quiz.vercel.app/",
+      "features": ["Trivia API Integration", "Real-time Score Tracking", "Responsive Design", "State Management"],
+      "technologies": ["React", "JavaScript", "CSS", "Trivia API"],
+      "category": "Web Design"
     },
     {
       "id": 2,
-      "title": "Zest - Food Delivery App",
-      "description": "A mobile application for ordering food from local restaurants.",
-      "image": "https://images.pexels.com/photos/4144179/pexels-photo-4144179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["Mobile App", "UI/UX"],
-      "link": "#"
+      "title": "Voice AI Agent",
+      "description": "Designed and developed an advanced voice AI agent powered by Gemini AI and YouTube's API, enabling seamless real-time speech recognition and intelligent voice interactions. Integrated APIs to enhance command execution and dynamic content retrieval, ensuring high accuracy, scalability, and an engaging user experience.",
+      "image": "https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["AI", "Voice Recognition", "API Integration", "React"],
+      "link": "https://voice-agent-orcin.vercel.app/",
+      "features": ["Speech Recognition", "Gemini AI Integration", "YouTube API", "Voice Interactions"],
+      "technologies": ["React", "Gemini AI", "YouTube API", "Speech Recognition API"],
+      "category": "Web Design"
     },
     {
       "id": 3,
-      "title": "Pinnacle - Real Estate Platform",
-      "description": "A web platform for buying, selling, and renting properties.",
-      "image": "https://images.pexels.com/photos/87223/pexels-photo-87223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["Web Design", "Branding"],
-      "link": "#"
+      "title": "Memory Chatbot",
+      "description": "Built a smart, multi-AI chatbot with dynamic memory and real-time responses. Features a sleek, responsive UI, smooth performance, and natural conversations—designed for futuristic, human-like interaction across devices.",
+      "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["AI", "Chatbot", "Memory", "Real-time"],
+      "link": "#",
+      "features": ["Dynamic Memory", "Real-time Responses", "Multi-AI Integration", "Natural Conversations"],
+      "technologies": ["React", "AI APIs", "WebSocket", "JavaScript"],
+      "category": "Web Design"
     },
     {
       "id": 4,
-      "title": "Pulse - Health Monitoring App",
-      "description": "A mobile application for tracking health metrics and fitness goals.",
-      "image": "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["Mobile App", "UI/UX"],
-      "link": "#"
+      "title": "Portfolio Website",
+      "description": "Developed a modern, responsive portfolio website showcasing projects, experience, and skills. Features glassmorphism design, smooth animations, blog integration, and optimized performance for an engaging user experience.",
+      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "tags": ["Portfolio", "React", "TypeScript", "Responsive"],
+      "link": "#",
+      "features": ["Responsive Design", "Blog Integration", "Smooth Animations", "Performance Optimized"],
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "category": "Web Design"
     },
     {
       "id": 5,
-      "title": "Mosaic - Social Media Dashboard",
-      "description": "A dashboard for managing and analyzing social media accounts.",
-      "image": "https://images.pexels.com/photos/34153/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["UI/UX", "Web Design"],
-      "link": "#"
+      "title": "AI Image Prompt Matching Tool",
+      "description": "A web application where users can practice and compare their prompt-writing skills for image generation. It matches the generated image against a given image to assess prompt accuracy.",
+      "image": "https://res.cloudinary.com/teami/image/upload/v1716304971/videotok/Homepage/Image_to_prompt_rv0nch.png",
+      "tags": ["AI", "Image Generation", "Prompt Engineering", "Web App"],
+      "link": "https://main.d2ck7atbdsba7b.amplifyapp.com/",
+      "category": "AI"
     },
     {
       "id": 6,
-      "title": "Orbit - Space Exploration Website",
-      "description": "A website for a space exploration company showcasing their missions and technology.",
+      "title": "AI Mock Interview Tool",
+      "description": "An AI-powered interview preparation platform that allows users to practice for interviews, receive real-time feedback, and improve their performance through mock sessions.",
       "image": "https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "tags": ["Web Design", "Branding"],
-      "link": "#"
+      "tags": ["AI", "Interview Practice", "Skill Assessment", "Machine Learning"],
+      "link": "https://main.d33nd16sirwq0n.amplifyapp.com/",
+      "category": "AI"
+    },
+    {
+      "id": 7,
+      "title": "Floating Cart UI Project",
+      "description": "A responsive front-end project featuring a 'floating cart' component, created as a tutorial build from the 'Serians Coding' YouTube channel. It demonstrates key UI/UX concepts for e-commerce.",
+      "image": "[Image representing a website with a floating shopping cart]",
+      "tags": ["UI/UX", "Front-end", "React/JavaScript", "E-commerce"],
+      "link": "https://rishav-floating-docs-project.vercel.app/",
+      "category": "UI/UX"
     }
+      
   ]
 }

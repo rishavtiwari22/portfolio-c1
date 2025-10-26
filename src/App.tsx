@@ -23,10 +23,10 @@ function App() {
               <Navbar />
               <main className="w-full max-w-full">
                 <Hero />
-                <Services />
+                {/* <Services /> */}
                 <Experience />
                 <Portfolio />
-                <Testimonials />
+                {/* <Testimonials /> */}
                 <BlogPosts />
                 <Contact />
               </main>

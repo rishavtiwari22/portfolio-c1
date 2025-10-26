@@ -13,31 +13,40 @@ export const Services: React.FC = () => {
   useEffect(() => {
     setServices([
       {
-        id: 1,
-        title: 'Big Data Analytics',
+        id: "edu_1",
+        title: "1-year Software Engineering Residential Program",
+        institution: "NavGurukul, Dharamshala, HP",
+        period: "November 2022 – 2023",
         icon: 'code',
-        description: 'Participated in the Ninth International Conference on Big Data Analytics (BDA 2021) held at IIIT Allahabad, Prayagraj from 15–18 December 2021, gaining insights into advanced research and developments in big data technologies.',
+        description: 'Comprehensive residential program focused on software engineering fundamentals. Gained hands-on experience in HTML, CSS, JavaScript, React, MERN stack, Git version control, and problem-solving methodologies. Developed multiple real-world projects and enhanced technical and soft skills.',
         image: 'https://drive.google.com/file/d/1fQIRlc6g0D3Om09osMFR2HhTo3IFHSQk/view?usp=drive_link',
+        highlights: ['MERN Stack Development', 'Version Control (Git)', 'Problem-Solving', 'Project-Based Learning']
       },
       {
-        id: 2,
-        title: 'GIS in Supply Chain (ISRO, 2021)',
+        id: "edu_2",
+        title: "Bachelor of Science (B.Sc.)",
+        institution: "Prof. Rajendra Singh University, Prayagraj, UP",
+        period: "2018 – 2021",
         icon: 'layout',
-        description: 'Completed online course on "GIS for Supply Chain Management" conducted by ISRO–IIRS from 26th to 30th April 2021 (10.5 hours) through VBS Purvanchal University, Jaunpur.',
+        description: 'Completed undergraduate degree in Science, building strong analytical and logical thinking foundation. Developed mathematical and scientific reasoning skills that later contributed to programming and technical problem-solving abilities.',
         image: 'https://drive.google.com/file/d/1Tvu0zITfc4E0yeaJx0CJd9OhcibSvDbi/view?usp=drive_link',
+        highlights: ['Analytical Thinking', 'Mathematical Foundation', 'Scientific Methodology', 'Research Skills']
       },
       {
-        id: 3,
-        title: 'Speaker Verification Internship – IIIT Allahabad',
+        id: "edu_3",
+        title: "Professional Experience & Growth",
+        institution: "Academic Associate at NavGurukul",
+        period: "October 2023 – Present",
         icon: 'paintbrush',
-        description: 'Completed a summer internship on "Mel Spectrogram Based Speaker Verification" at IIIT Allahabad under Dr. Ramesh Kumar Bhukya (May–July 2021).',
+        description: 'Currently serving as Academic Associate, mentoring 50+ underprivileged students in programming. Achieved 30% improvement in student coding practice and 15% enhancement in comprehension scores through tailored teaching methods and monthly facilitated discussions.',
         image: 'https://drive.google.com/file/d/1ACgTrzc8PK4FjMqMu35lWLtImyS-UrKc/view?usp=drive_link',
+        highlights: ['Mentoring 50+ Students', '30% Improvement in Practice', 'Leadership Skills', 'Educational Impact']
       },
     ]);
   }, []);
 
   return (
-    <section id="certificate" className="py-16 md:py-24 relative overflow-hidden w-full max-w-full">
+    <section id="education" className="py-16 md:py-24 relative overflow-hidden w-full max-w-full">
       {/* Advanced layered background with enhanced glassmorphism */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-orange-50/15 to-purple-50/20 z-0"></div>
 
@@ -68,7 +77,7 @@ export const Services: React.FC = () => {
 
                   <span className="animate-gradient-text bg-size-200 bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 
                                 text-transparent bg-clip-text font-semibold tracking-wider text-sm uppercase relative z-10">
-                    Certifications & Expertise:
+                    Educational Background:
                   </span>
                 </div>
               </div>
@@ -85,7 +94,7 @@ export const Services: React.FC = () => {
                             from-gray-800 via-gray-900 to-black
                             bg-clip-text text-transparent drop-shadow-sm perspective-1000 transform transition-all duration-500
                             hover:scale-[1.03]">
-                Certifications
+                Education
               </span>
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-1.5 w-32 bg-gradient-to-r 
                            from-orange-500 to-red-500
@@ -102,7 +111,7 @@ export const Services: React.FC = () => {
                          bg-white/50 p-7 rounded-2xl border border-white/30
                          shadow-[0_10px_30px_rgba(0,0,0,0.1)]
                          z-10 relative transition-all group-hover:shadow-xl">
-                Certified in various industry-relevant skills to support innovation, efficiency, and professional growth.
+                My educational journey spanning from higher secondary education to specialized software engineering training.
               </p>
 
               {/* Enhanced background effects */}
@@ -158,7 +167,7 @@ export const Services: React.FC = () => {
                                transition-transform duration-500 overflow-hidden">
                     {/* Inner glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
-                    <span className="relative">{service.title}</span>
+                    <span className="relative">{service.period}</span>
                   </div>
 
                   {/* Brutalist accent element */}
@@ -192,8 +201,31 @@ export const Services: React.FC = () => {
                               transform transition-transform duration-300 group-hover:translate-x-1
                               bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-orange-700/90 to-gray-700">{service.title}</h3>
 
-                  <p className="text-gray-600 mb-5 flex-1 leading-relaxed
+                  <div className="mb-3">
+                    <h4 className="text-lg font-semibold text-gray-700">{service.institution}</h4>
+                  </div>
+
+                  <p className="text-gray-600 mb-4 flex-1 leading-relaxed
                              pl-4 border-l-2 border-orange-400/50 bg-white/30 p-3 rounded-r-lg">{service.description}</p>
+
+                  {/* Key Highlights Section */}
+                  {service.highlights && (
+                    <div className="mb-5">
+                      <h5 className="text-sm font-semibold text-gray-700 mb-2">Key Highlights:</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {service.highlights.map((highlight: string, index: number) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-xs font-medium bg-orange-100/70 text-orange-700 
+                                     rounded-full border border-orange-200/50 backdrop-blur-sm
+                                     hover:bg-orange-200/70 transition-colors duration-300"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Enhanced glass button with advanced effects */}
                   <a
@@ -213,7 +245,7 @@ export const Services: React.FC = () => {
                   >
                     <div className="absolute inset-0 bg-gradient-to-tr from-orange-300/10 to-orange-300/10 
                       group-hover:from-orange-300/20 group-hover:to-orange-300/40 transition-colors duration-500"></div>
-                    <span className="relative z-10">View Certificate</span>
+                    <span className="relative z-10">View Details</span>
                     <svg
                       className="w-5 h-5 ml-1 transition-all transform relative z-10
                         group-hover:translate-x-2 group-hover:scale-110 duration-500"

@@ -5,7 +5,7 @@ import { OptimizedImage } from './OptimizedImage';
 import { useIntersectionAnimation } from '../hooks/useIntersectionAnimation';
 
 export const Portfolio: React.FC = () => {
-  const categories = ['All', 'Web Design', 'Mobile App', 'UI/UX', 'Branding'];
+  const categories = ['All', 'Web Design', 'Mobile App', 'UI/UX', 'AI'];
   const [activeCategory, setActiveCategory] = useState('All');
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,9 +22,8 @@ export const Portfolio: React.FC = () => {
     let filtered = activeCategory === 'All'
       ? projects
       : projects.filter(project => 
-          project.tags && project.tags.some((tag: string) => 
-            tag.toLowerCase().includes(activeCategory.toLowerCase())
-          )
+          project.category === activeCategory
+          
         );
     
     // Only show first 3 projects on main page
