@@ -1,6 +1,7 @@
 import React from 'react';
 import { BriefcaseIcon, DownloadIcon } from './Icons';
 import { OptimizedImage } from './OptimizedImage';
+const heroImage = '/image/aaa.jpeg';
 
 export const Hero: React.FC = () => {
   return (
@@ -29,14 +30,14 @@ export const Hero: React.FC = () => {
                 
                 {/* Kinetic typography - animated gradient */}
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 tracking-tight leading-none">
-                  I'm <span className="inline-block animate-gradient-text bg-gradient-to-r bg-clip-text text-transparent from-orange-500 via-red-500 to-orange-500 bg-size-200 mb-2">Tushant Kumar</span>,<br />
-                  <span className="inline-block relative z-10 bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent before:absolute before:content-[''] before:bg-gray-200/10 before:w-full before:h-full before:-z-10 before:left-2 before:top-2 before:skew-y-1">AIMI-Certified Expert </span>
+                  I'm <span className="inline-block animate-gradient-text bg-gradient-to-r bg-clip-text text-transparent from-orange-500 via-red-500 to-orange-500 bg-size-200 mb-2">Rishav Tiwari</span>,<br />
+                  <span className="inline-block relative z-10 bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent before:absolute before:content-[''] before:bg-gray-200/10 before:w-full before:h-full before:-z-10 before:left-2 before:top-2 before:skew-y-1">MERN Developer | AI-Driven Creations</span>
                 </h1>
                 
                 {/* Glassmorphic paragraph with subtle animation */}
                 <div className="relative group transition-all duration-500 mb-10">
                   <p className="text-gray-700 text-lg leading-relaxed backdrop-blur-md bg-white/40 border border-white/30 p-5 rounded-2xl shadow-lg z-10 relative transition-all group-hover:shadow-xl">
-                    A passionate AIMI-Certified Expert  <span className="font-bold text-orange-500">4+ years</span> in Educational Innovation and Technology.
+                    A passionate MERN Stack Developer <span className="font-bold text-orange-500">2+ years</span> in Educational Innovation and Technology.
                   </p>
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-purple-300/20 rounded-2xl blur-sm -z-0 translate-y-1 translate-x-1 group-hover:translate-y-2 group-hover:translate-x-2 transition-all duration-300"></div>
                 </div>
@@ -54,10 +55,10 @@ export const Hero: React.FC = () => {
                     <div className="absolute -right-20 group-hover:right-0 top-0 w-20 h-full bg-white/30 skew-x-12 transition-all duration-700"></div>
                     <span className="absolute inset-0 bg-gradient-to-r from-orange-600/30 to-orange-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                     <BriefcaseIcon className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="relative z-10">Join Me</span>
+                    <span className="relative z-10">Connect</span>
                   </a>
                   <a
-                    href="https://drive.google.com/file/d/1Qw6Qw8Qw8Qw8Qw8Qw8Qw8Qw8Qw8Qw8Qw/view?usp=sharing"
+                    href="https://docs.google.com/document/d/1s1zSUSkiRkxwL0XqbMIQ_lx7ncw_GUo-NMnO36jBf3w/edit?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group neumorphic backdrop-blur-xl bg-white/60 border border-white/40 text-gray-800 font-bold py-4 px-10 rounded-2xl transition-all duration-500 hover:-translate-y-2 flex items-center justify-center relative overflow-hidden"
@@ -79,7 +80,7 @@ export const Hero: React.FC = () => {
                       <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
                         {/* 3D avatars with movement effect */}
                         <div className="text-gray-800 font-bold text-lg tracking-tight">
-                                <span className="inline-block mr-1 animate-count-up" data-count="5">4</span>+ Years Experience
+                                <span className="inline-block mr-1 animate-count-up" data-count="5">3</span> Years Experience
                               </div>
                         
                         <div className="flex-1">
@@ -102,7 +103,7 @@ export const Hero: React.FC = () => {
                             <div className="flex items-center">
 
 <div className="relative flex -space-x-3 transform group-hover:translate-x-2 transition-transform duration-500">
-                          {[1, 2, 3].map((i) => (
+                          {[1, 2, ].map((i) => (
                             <div key={i} 
                                  className="w-12 h-12 rounded-full border-4 border-white/90 bg-gradient-to-br from-orange-400/90 to-orange-500/90 flex items-center justify-center overflow-hidden shadow-[0_8px_15px_rgba(0,0,0,0.2)] transform hover:scale-110 hover:-translate-y-1 transition-all duration-300"
                                  style={{ transform: `translateZ(${i * 5}px)` }}>
@@ -110,7 +111,7 @@ export const Hero: React.FC = () => {
                             </div>
                           ))}
                           <div className="w-12 h-12 rounded-full border-4 border-white/90 bg-gradient-to-br from-gray-700/90 to-gray-900/90 flex items-center justify-center overflow-hidden shadow-[0_8px_15px_rgba(0,0,0,0.2)]">
-                            <span className="text-xs font-bold text-white">+4</span>
+                            <span className="text-xs font-bold text-white">+3</span>
                           </div>
                         </div>
 
@@ -154,8 +155,8 @@ export const Hero: React.FC = () => {
                     <div className="bg-gradient-to-br from-orange-400 to-orange-500 rounded-full w-64 h-64 md:w-80 md:h-80 flex items-center justify-center 
                                   overflow-hidden border-2 border-white/60 shadow-lg relative">
                       <OptimizedImage 
-                        src="https://static.vecteezy.com/system/resources/previews/049/936/572/non_2x/young-boy-working-happily-on-laptop-vector.jpg" 
-                        alt="Tushant Kumar" 
+                        src={heroImage} 
+                        alt="Rishav Tiwari" 
                         width={320}
                         height={320}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -168,7 +169,7 @@ export const Hero: React.FC = () => {
                 <div className="absolute top-10 -right-10 backdrop-blur-sm bg-white/40 border border-white/30 px-4 py-2 rounded-lg shadow-md transform rotate-6">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                    <div className="text-orange-600 font-semibold text-sm">AIML and IoT</div>
+                    <div className="text-orange-600 font-semibold text-sm">AIML and MERN</div>
                   </div>
                 </div>
                 

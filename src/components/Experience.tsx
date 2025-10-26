@@ -78,45 +78,46 @@ export const Experience: React.FC = () => {
     });
   };
   
-  // Replace fetched experiences with hardcoded journey steps
+  // Replace fetched experiences with actual professional experience
   useEffect(() => {
     setExperiences([
       {
         id: 1,
-        position: 'B.Tech in Electronics & Communication',
-        period: '2015 - 2019',
-        company: 'Undergraduate Studies',
-        location: 'India',
-        description: `Began my journey in technology and engineering, building a strong foundation in electronics, communication, and programming.`,
-        skills: ['Electronics', 'Communication', 'Programming'],
+        position: 'AI Innovative with Academic Associate',
+        period: 'Jan 2025 - Present',
+        company: 'NavGurukul',
+        location: 'Jashpur, CG',
+        description: `Leading AI innovation initiatives and educational programs for underprivileged students. Mentoring 50+ girls in programming, software development, and AI technologies. Achieved 30% increase in coding practice engagement and 15% improvement in comprehension scores through innovative AI-integrated teaching methods and monthly classroom discussions.`,
+        skills: ['AI Innovation', 'Mentoring', 'Programming Education', 'AI Integration', 'Student Assessment', 'Leadership'],
       },
       {
         id: 2,
-        position: 'M.Tech in Electronics & Communication',
-        period: '2019 - 2021',
-        company: 'Postgraduate Studies',
-        location: 'India',
-        description: `Specialized in advanced electronics and communication, deepening my expertise and starting to mentor students in AIML and IoT.`,
-        skills: ['AIML', 'IoT', 'Mentorship', 'Research'],
+        position: 'Academic Associate',
+        period: 'Aug 2023 - Jan 2025',
+        company: 'NavGurukul',
+        location: 'Jashpur, CG',
+        description: `Successfully led educational initiatives for underprivileged students, mentoring 50+ girls in programming and software development. Demonstrated exceptional performance leading to promotion to AI Innovative role. Achieved significant improvements in student engagement and learning outcomes.`,
+        skills: ['Mentoring', 'Programming Education', 'Student Assessment', 'Team Leadership'],
       },
       {
         id: 3,
-        position: 'PhD (Visvesvaraya Scheme, MeitY)',
-        period: '2021 - Present',
-        company: 'Doctoral Research',
-        location: 'India',
-        description: `Currently pursuing a PhD under the Visvesvaraya Scheme, supported by the Ministry of Electronics and Information Technology (MeitY), focusing on innovative technologies and real-world impact.`,
-        skills: ['PhD', 'Visvesvaraya Scheme', 'MeitY', 'Innovation'],
+        position: 'Discipline Coordinator (Volunteer)',
+        period: 'Dec 2023 - Feb 2023',
+        company: 'NavGurukul',
+        location: 'Dharamshala, HP',
+        description: `Ensured a well-organized and disciplined campus environment by addressing and resolving campus-related issues effectively. Demonstrated strong problem-solving skills and contributed to maintaining a positive learning atmosphere for students.`,
+        skills: ['Problem-Solving', 'Campus Management', 'Conflict Resolution', 'Volunteer Leadership'],
       },
       {
         id: 4,
-        position: 'IoT-based Healthcare Monitoring Project',
-        period: '2020',
-        company: 'Project Leadership',
-        location: 'India',
-        description: `Guided a group of students to create an IoT-based healthcare monitoring system that uses AIML to predict health risks—combining real-time sensor data with machine learning to alert users before issues escalate.`,
-        skills: ['IoT', 'Machine Learning', 'Healthcare', 'Student Projects'],
+        position: 'Software Engineering Student',
+        period: 'Nov 2022 - Aug 2023',
+        company: 'NavGurukul Residential Program',
+        location: 'Dharamshala, HP',
+        description: `Completed intensive 1-year residential software engineering program. Gained comprehensive experience in MERN stack development, built multiple projects including quiz games, AI agents, and dashboards. Developed strong technical and soft skills in collaborative learning environment.`,
+        skills: ['MERN Stack', 'React', 'JavaScript', 'Project Development', 'Team Collaboration'],
       },
+      
     ]);
   }, []);
   
@@ -170,7 +171,7 @@ export const Experience: React.FC = () => {
             
             <div className="relative">
               <p className="text-gray-700 max-w-2xl mx-auto bg-white/90 p-6 rounded-xl border border-gray-100 shadow-[0_15px_35px_rgba(0,0,0,0.05)] transform hover:shadow-xl hover:scale-[1.01] transition-all duration-500 leading-relaxed">
-                My journey in the educational field is driven by a passion for innovation, hands-on learning, and empowering students from all backgrounds. Explore the steps below to see how I combine AIML, IoT, and mentorship to make a real-world impact.
+                My professional journey in software engineering and education, from student to mentor. Currently leading educational initiatives at NavGurukul, empowering underprivileged students with technical skills and career opportunities in technology.
               </p>
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-70"></div>
             </div>
@@ -345,7 +346,7 @@ export const Experience: React.FC = () => {
                 <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              bg-clip-text text-transparent drop-shadow-sm">4+</span>
+                              bg-clip-text text-transparent drop-shadow-sm">2+</span>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
                               transition-colors uppercase tracking-wider">Years Experience</span>
               </div>
@@ -366,7 +367,7 @@ export const Experience: React.FC = () => {
                 <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              bg-clip-text text-transparent drop-shadow-sm">50+</span>
+                              bg-clip-text text-transparent drop-shadow-sm">10+</span>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
                               transition-colors uppercase tracking-wider">Projects</span>
               </div>
@@ -387,9 +388,9 @@ export const Experience: React.FC = () => {
                 <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
                 
                 <span className="text-4xl font-bold animate-count-up block mb-2 bg-gradient-to-r from-orange-600 to-red-600 
-                              bg-clip-text text-transparent drop-shadow-sm">600+</span>
+                              bg-clip-text text-transparent drop-shadow-sm">200+</span>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-orange-700 
-                              transition-colors uppercase tracking-wider">Students</span>
+                              transition-colors uppercase tracking-wider">Students Mentored</span>
               </div>
             </div>
           </div>
