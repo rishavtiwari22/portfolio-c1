@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
                 {/* Glassmorphic paragraph with subtle animation */}
                 <div className="relative group transition-all duration-500 mb-10">
                   <p className="text-gray-700 text-lg leading-relaxed backdrop-blur-md bg-white/40 border border-white/30 p-5 rounded-2xl shadow-lg z-10 relative transition-all group-hover:shadow-xl">
-                    A passionate MERN Stack Developer <span className="font-bold text-orange-500">2+ years</span> in Educational Innovation and Technology.
+                    A passionate MERN Stack Developer <span className="font-bold text-orange-500">3+ years</span> in Educational Innovation and Technology.
                   </p>
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-purple-300/20 rounded-2xl blur-sm -z-0 translate-y-1 translate-x-1 group-hover:translate-y-2 group-hover:translate-x-2 transition-all duration-300"></div>
                 </div>
