@@ -80,7 +80,7 @@ export const Hero: React.FC = () => {
                       <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
                         {/* 3D avatars with movement effect */}
                         <div className="text-gray-800 font-bold text-lg tracking-tight">
-                                <span className="inline-block mr-1 animate-count-up" data-count="5">3</span> Years Experience
+                                <span className="inline-block mr-1 animate-count-up" data-count="5">2+</span> Years Experience
                               </div>
                         
                         <div className="flex-1">
