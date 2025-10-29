@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
                 {/* Glassmorphic paragraph with subtle animation */}
                 <div className="relative group transition-all duration-500 mb-10">
                   <p className="text-gray-700 text-lg leading-relaxed backdrop-blur-md bg-white/40 border border-white/30 p-5 rounded-2xl shadow-lg z-10 relative transition-all group-hover:shadow-xl">
-                    A passionate MERN Stack Developer <span className="font-bold text-orange-500">3+ years</span> in Educational Innovation and Technology.
+                    A passionate MERN Stack Developer <span className="font-bold text-orange-500">2+ years</span> in Educational Innovation and Technology.
                   </p>
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-purple-300/20 rounded-2xl blur-sm -z-0 translate-y-1 translate-x-1 group-hover:translate-y-2 group-hover:translate-x-2 transition-all duration-300"></div>
                 </div>
@@ -103,7 +103,7 @@ export const Hero: React.FC = () => {
                             <div className="flex items-center">
 
 <div className="relative flex -space-x-3 transform group-hover:translate-x-2 transition-transform duration-500">
-                          {[1, 2, ].map((i) => (
+                          {[1, 2].map((i) => (
                             <div key={i} 
                                  className="w-12 h-12 rounded-full border-4 border-white/90 bg-gradient-to-br from-orange-400/90 to-orange-500/90 flex items-center justify-center overflow-hidden shadow-[0_8px_15px_rgba(0,0,0,0.2)] transform hover:scale-110 hover:-translate-y-1 transition-all duration-300"
                                  style={{ transform: `translateZ(${i * 5}px)` }}>
@@ -111,7 +111,7 @@ export const Hero: React.FC = () => {
                             </div>
                           ))}
                           <div className="w-12 h-12 rounded-full border-4 border-white/90 bg-gradient-to-br from-gray-700/90 to-gray-900/90 flex items-center justify-center overflow-hidden shadow-[0_8px_15px_rgba(0,0,0,0.2)]">
-                            <span className="text-xs font-bold text-white">+3</span>
+                            <span className="text-xs font-bold text-white">+2</span>
                           </div>
                         </div>
 
